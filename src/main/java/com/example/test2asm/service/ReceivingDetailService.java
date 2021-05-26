@@ -31,14 +31,14 @@ public class ReceivingDetailService {
 
     public String deleteReceiving(int id) {
         repository.deleteById(id);
-        return "Receiving Note removed ||" + id;
+        return "Receiving Note number " + id + "deleted";
     }
 
     public ReceivingDetail updateReceiving(ReceivingDetail receivingDetail) {
         ReceivingDetail existReceiving = repository.findById(receivingDetail.getReceivingdetail_id()).orElse(null);
         existReceiving.setReceivingNote(receivingDetail.getReceivingNote());
-        existReceiving.setProduct(receivingDetail.getProduct());
-        existReceiving.setReceivingdetail_quantity(receivingDetail.getReceivingdetail_quantity());
+//        existReceiving.setProduct(receivingDetail.getProduct());
+//        existReceiving.setReceivingdetail_quantity(receivingDetail.getReceivingdetail_quantity());
         return repository.save(existReceiving);
     }
 

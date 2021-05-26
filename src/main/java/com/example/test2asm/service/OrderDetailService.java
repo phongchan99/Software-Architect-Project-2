@@ -31,7 +31,7 @@ public class OrderDetailService {
 
     public String deleteOrder(int id) {
         repository.deleteById(id);
-        return "Order removed ||" + id;
+        return "Order " + id + "deleted";
     }
 
     public OrderDetail updateOrder(OrderDetail orderDetail) {

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class ReceivingNote {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int receivingNote_id;
     private String receivingNote_date;
 

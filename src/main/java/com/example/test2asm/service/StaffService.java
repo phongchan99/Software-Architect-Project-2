@@ -25,17 +25,13 @@ public class StaffService {
         return repository.findById(id).orElse(null);
     }
 
-//    public Staff getStaffByName(String name) {
-//        return repository.findBystaff_name(name);
-//    }
-
     public List<Staff> getStaffs() {
         return repository.findAll();
     }
 
     public String deleteStaff(int id) {
         repository.deleteById(id);
-        return "Staff removed || " + id;
+        return "Staff " + id + " deleted";
     }
 
     public Staff updateStaff(Staff staff) {

@@ -24,7 +24,7 @@ public class Test2asmApplication {
 		OrderDetailRepository orderDetailRepository = configurableApplicationContext.getBean(OrderDetailRepository.class);
 		ReceivingNoteRepository receivingNoteRepository = configurableApplicationContext.getBean(ReceivingNoteRepository.class);
 		ReceivingDetailRepository receivingDetailRepository = configurableApplicationContext.getBean(ReceivingDetailRepository.class);
-
+		CustomerRepository customerRepository = configurableApplicationContext.getBean(CustomerRepository.class);
 
 		//CATEGORY
 		Category vehicle = new Category("Bike");
@@ -73,7 +73,17 @@ public class Test2asmApplication {
 		receivingNoteRepository.saveAll(receivingNotes);
 
 		//RECEIVING DETAIL
+		ReceivingDetail receivingDetail1 = new ReceivingDetail(note1, detailNum2);
+		ReceivingDetail receivingDetail2 = new ReceivingDetail(note2, detailNum1);
+		List<ReceivingDetail> receivingDetails = Arrays.asList(receivingDetail1, receivingDetail2);
+		receivingDetailRepository.saveAll(receivingDetails);
 
+		//CUSTOMER
+		Customer customer1 = new Customer("Luan");
+		Customer customer2 = new Customer("Nguyen");
+		Customer customer3 = new Customer("Quan");
+		List<Customer> customers = Arrays.asList(customer1, customer2, customer3);
+		customerRepository.saveAll(customers);
 	}
 
 }

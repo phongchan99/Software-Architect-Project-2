@@ -20,7 +20,7 @@ import java.util.List;
 public class Provider implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int provider_id;
     private String provider_name;
     private String provider_address;

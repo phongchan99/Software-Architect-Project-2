@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 public class StaffController {
+
     @Autowired
     private StaffService service;
 
@@ -33,11 +33,6 @@ public class StaffController {
     public Staff findStaffById(@PathVariable int id) {
         return service.getStaffById(id);
     }
-
-//    @GetMapping("/staffByName/{name}")
-//    public Staff findStaffByName(@PathVariable String name) {
-//        return service.getStaffByName(name);
-//    }
 
     @PutMapping("/updateStaff")
     public Staff updateStaff(@RequestBody Staff staff) {

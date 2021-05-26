@@ -18,7 +18,7 @@ import java.util.List;
 public class OOrder implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
     private String order_date;
 
