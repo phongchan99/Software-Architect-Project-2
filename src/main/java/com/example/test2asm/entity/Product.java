@@ -39,6 +39,10 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private List<OrderDetail> orderDetails;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    private List<DeliveryDetail> deliveryDetails;
+
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "product")
 //    private List<ReceivingDetail> receivingDetails;

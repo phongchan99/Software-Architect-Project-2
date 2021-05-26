@@ -22,6 +22,9 @@ public class DeliveryDetail {
     @JoinColumn(name = "DeliveryNoteId", referencedColumnName = "delivery_id")
     private Delivery delivery;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Product product;
+
     @Column(name = "Quantity")
     private int delivery_quantity;
 
