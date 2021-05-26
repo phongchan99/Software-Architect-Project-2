@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "ReceivingNotes")
-public class ReceivingNote {
+public class Receiving {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class ReceivingNote {
 //    @JoinColumn(name = "orderId", referencedColumnName = "order_id")
 //    private OOrder order;
 
-    public ReceivingNote(String receiving_date, Staff staff) {
+    public Receiving(String receiving_date, Staff staff) {
         this.receivingNote_date = receivingNote_date;
         this.staff = staff;
     }

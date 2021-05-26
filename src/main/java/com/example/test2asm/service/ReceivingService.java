@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ReceivingDetailService {
+public class ReceivingService {
 
     @Autowired
     private ReceivingDetailRepository repository;
@@ -31,12 +31,12 @@ public class ReceivingDetailService {
 
     public String deleteReceiving(int id) {
         repository.deleteById(id);
-        return "Receiving Note number " + id + "deleted";
+        return "Receiving Note number " + id + " deleted";
     }
 
     public ReceivingDetail updateReceiving(ReceivingDetail receivingDetail) {
         ReceivingDetail existReceiving = repository.findById(receivingDetail.getReceivingdetail_id()).orElse(null);
-        existReceiving.setReceivingNote(receivingDetail.getReceivingNote());
+        existReceiving.setReceiving(receivingDetail.getReceiving());
 //        existReceiving.setProduct(receivingDetail.getProduct());
 //        existReceiving.setReceivingdetail_quantity(receivingDetail.getReceivingdetail_quantity());
         return repository.save(existReceiving);

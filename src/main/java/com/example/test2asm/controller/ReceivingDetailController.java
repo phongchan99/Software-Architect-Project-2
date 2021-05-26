@@ -1,7 +1,7 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.ReceivingDetail;
-import com.example.test2asm.service.ReceivingDetailService;
+import com.example.test2asm.service.ReceivingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class ReceivingDetailController {
     @Autowired
-    private ReceivingDetailService service;
+    private ReceivingService service;
 
     @PostMapping("/addReceiving")
     public ReceivingDetail addReceiving(@RequestBody ReceivingDetail receivingDetail) {

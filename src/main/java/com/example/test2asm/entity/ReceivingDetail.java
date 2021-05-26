@@ -3,7 +3,6 @@ package com.example.test2asm.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 
@@ -21,7 +20,7 @@ public class ReceivingDetail {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ReceivingNoteId", referencedColumnName = "receivingNote_id")
-    private ReceivingNote receivingNote;
+    private Receiving receiving;
 
 //    @ManyToOne(cascade = CascadeType.MERGE)
 //    @JoinColumn(name = "productId", referencedColumnName = "product_id")
@@ -35,8 +34,8 @@ public class ReceivingDetail {
 //    private int receivingdetail_quantity;
 
 
-    public ReceivingDetail(ReceivingNote receivingNote, OrderDetail orderDetail) {
-        this.receivingNote = receivingNote;
+    public ReceivingDetail(Receiving receiving, OrderDetail orderDetail) {
+        this.receiving = receiving;
         this.orderDetail = orderDetail;
     }
 }

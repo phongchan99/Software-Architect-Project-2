@@ -22,7 +22,7 @@ public class Test2asmApplication {
 		StaffRepository staffRepository = configurableApplicationContext.getBean(StaffRepository.class);
 		ProviderRepository providerRepository = configurableApplicationContext.getBean(ProviderRepository.class);
 		OrderDetailRepository orderDetailRepository = configurableApplicationContext.getBean(OrderDetailRepository.class);
-		ReceivingNoteRepository receivingNoteRepository = configurableApplicationContext.getBean(ReceivingNoteRepository.class);
+		ReceivingRepository receivingRepository = configurableApplicationContext.getBean(ReceivingRepository.class);
 		ReceivingDetailRepository receivingDetailRepository = configurableApplicationContext.getBean(ReceivingDetailRepository.class);
 		CustomerRepository customerRepository = configurableApplicationContext.getBean(CustomerRepository.class);
 
@@ -67,10 +67,10 @@ public class Test2asmApplication {
 		orderDetailRepository.saveAll(orderDetails);
 
 		//RECEIVING
-		ReceivingNote note1 = new ReceivingNote("25/05/2021", staff3);
-		ReceivingNote note2 = new ReceivingNote("26/05/2021", staff1);
-		List<ReceivingNote> receivingNotes = Arrays.asList(note1, note2);
-		receivingNoteRepository.saveAll(receivingNotes);
+		Receiving note1 = new Receiving("25/05/2021", staff3);
+		Receiving note2 = new Receiving("26/05/2021", staff1);
+		List<Receiving> receivings = Arrays.asList(note1, note2);
+		receivingRepository.saveAll(receivings);
 
 		//RECEIVING DETAIL
 		ReceivingDetail receivingDetail1 = new ReceivingDetail(note1, detailNum2);
