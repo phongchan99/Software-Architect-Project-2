@@ -1,8 +1,6 @@
 package com.example.test2asm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +26,11 @@ public class Staff implements Serializable {
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Staff", referencedColumnName = "staff_name")
     private List<OOrder> order;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "saleStaff", referencedColumnName = "staff_name")
+    private List<Invoice> invoices;
 
     public Staff(String staff_name, String staff_address, String staff_phone, String staff_email) {
         this.staff_name = staff_name;

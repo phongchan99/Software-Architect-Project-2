@@ -42,4 +42,11 @@ public class OrderDetail {
         this.detail_quantity = detail_quantity;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getDetail_quantity() {
+        return detail_quantity;
+    }
 }

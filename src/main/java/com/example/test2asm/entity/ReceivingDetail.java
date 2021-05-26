@@ -22,17 +22,9 @@ public class ReceivingDetail {
     @JoinColumn(name = "ReceivingNoteId", referencedColumnName = "receivingNote_id")
     private Receiving receiving;
 
-//    @ManyToOne(cascade = CascadeType.MERGE)
-//    @JoinColumn(name = "productId", referencedColumnName = "product_id")
-//    private Product product;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "orderDetaiId")
     private OrderDetail orderDetail;
-
-//    @Column(name = "Quantity")
-//    private int receivingdetail_quantity;
-
 
     public ReceivingDetail(Receiving receiving, OrderDetail orderDetail) {
         this.receiving = receiving;
