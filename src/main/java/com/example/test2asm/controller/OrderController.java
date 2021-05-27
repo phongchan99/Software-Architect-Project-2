@@ -1,7 +1,7 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.OrderDetail;
-import com.example.test2asm.service.OrderDetailService;
+import com.example.test2asm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class OrderController {
     @Autowired
-    private OrderDetailService service;
+    private OrderService service;
 
     @PostMapping("/placeOrder")
     public OrderDetail addOrder(@RequestBody OrderDetail orderDetail) {

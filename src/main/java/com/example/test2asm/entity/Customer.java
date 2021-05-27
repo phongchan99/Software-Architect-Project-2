@@ -26,10 +26,10 @@ public class Customer {
     private String customer_email;
     private String customer_contactPerson;
 
-    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "Customer", referencedColumnName = "customer_name")
-    private List<Invoice> invoices;
+//    @JsonIgnore
+//    @OneToMany
+//    @JoinColumn(name = "Customer", referencedColumnName = "customer_name")
+//    private List<Invoice> invoices;
 
     public Customer(String customer_name) {
         this.customer_name = customer_name;

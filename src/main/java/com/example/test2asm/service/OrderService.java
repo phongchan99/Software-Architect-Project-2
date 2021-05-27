@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderDetailService {
+public class OrderService {
 
     @Autowired
     private OrderDetailRepository repository;

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class InvoiceDetail {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceDetail_id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -29,8 +29,21 @@ public class InvoiceDetail {
     })
     private Product product;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "customer", referencedColumnName = "customer_id")
+    private Customer customer;
+
     @Column(name = "Quantity")
     private int invoice_quantity;
 
+    @Column(name = "totalPrice")
+    private float invoice_totalPrice;
 
+    public InvoiceDetail(Invoice invoice, Product product, Customer customer, int invoice_quantity, float invoice_totalPrice) {
+        this.invoice = invoice;
+        this.product = product;
+        this.customer = customer;
+        this.invoice_quantity = invoice_quantity;
+        this.invoice_totalPrice = product.getProduct_price()*invoice_quantity;
+    }
 }

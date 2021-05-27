@@ -20,6 +20,13 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoice_id;
     private String invoice_date;
-    private float invoice_totalPrice;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "staff",referencedColumnName = "staff_name")
+    private Staff staff;
+
+    public Invoice(String invoice_date, Staff staff) {
+        this.invoice_date = invoice_date;
+        this.staff = staff;
+    }
 }

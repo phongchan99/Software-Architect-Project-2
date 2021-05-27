@@ -25,6 +25,8 @@ public class Test2asmApplication {
 		ReceivingRepository receivingRepository = configurableApplicationContext.getBean(ReceivingRepository.class);
 		ReceivingDetailRepository receivingDetailRepository = configurableApplicationContext.getBean(ReceivingDetailRepository.class);
 		CustomerRepository customerRepository = configurableApplicationContext.getBean(CustomerRepository.class);
+		InvoiceRepository invoiceRepository = configurableApplicationContext.getBean(InvoiceRepository.class);
+		InvoiceDetailRepository invoiceDetailRepository = configurableApplicationContext.getBean(InvoiceDetailRepository.class);
 
 		//CATEGORY
 		Category vehicle = new Category("Bike");
@@ -84,6 +86,18 @@ public class Test2asmApplication {
 		Customer customer3 = new Customer("Quan");
 		List<Customer> customers = Arrays.asList(customer1, customer2, customer3);
 		customerRepository.saveAll(customers);
+
+		//INVOICE
+		Invoice invoice1 = new Invoice("28/05/2021", staff1);
+		Invoice invoice2 = new Invoice("29/05/2021", staff2);
+		Invoice invoice3 = new Invoice("30/05/2021", staff3);
+		List<Invoice> invoices = Arrays.asList(invoice1, invoice2, invoice3);
+		invoiceRepository.saveAll(invoices);
+
+		//INVOICE DETAIL
+		InvoiceDetail invoiceDetail1 = new InvoiceDetail(invoice1, phone, customer1, 5, 0);
+		List<InvoiceDetail> invoiceDetails = Arrays.asList(invoiceDetail1);
+		invoiceDetailRepository.saveAll(invoiceDetails);
 	}
 
 }
