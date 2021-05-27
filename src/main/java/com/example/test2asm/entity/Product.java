@@ -43,10 +43,6 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private List<DeliveryDetail> deliveryDetails;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "product")
-//    private List<ReceivingDetail> receivingDetails;
-
     public Product(String product_name, Category category, float product_price) {
         this.product_name = product_name;
         this.category = category;

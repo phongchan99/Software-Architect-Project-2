@@ -24,10 +24,6 @@ public class Receiving {
     @JoinColumn(name = "staff", referencedColumnName = "name")
     private Staff staff;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "orderId", referencedColumnName = "order_id")
-//    private OOrder order;
-
     public Receiving(String receiving_date, Staff staff) {
         this.receivingNote_date = receivingNote_date;
         this.staff = staff;

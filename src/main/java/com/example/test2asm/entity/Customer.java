@@ -26,11 +26,6 @@ public class Customer {
     private String customer_email;
     private String customer_contactPerson;
 
-//    @JsonIgnore
-//    @OneToMany
-//    @JoinColumn(name = "Customer", referencedColumnName = "customer_name")
-//    private List<Invoice> invoices;
-
     public Customer(String name, String address, String phone) {
         this.name = name;
         this.address = address;
