@@ -21,6 +21,18 @@ public class CustomerService {
         return repository.saveAll(customers);
     }
 
+    public Customer getCustomerByName(String name) {
+        return repository.findByName(name);
+    }
+
+    public Customer getCustomerByAddress(String address) {
+        return repository.findByAddress(address);
+    }
+
+    public Customer getCustomerByPhone(String phone) {
+        return repository.findByPhone(phone);
+    }
+
     public Customer getCustomerById(int id) {
         return repository.findById(id).orElse(null);
     }
@@ -36,9 +48,9 @@ public class CustomerService {
 
     public Customer updateCustomer(Customer customer) {
         Customer existCustomer = repository.findById(customer.getCustomer_id()).orElse(null);
-        existCustomer.setCustomer_name(customer.getCustomer_name());
-        existCustomer.setCustomer_address(customer.getCustomer_address());
-        existCustomer.setCustomer_phone(customer.getCustomer_phone());
+        existCustomer.setName(customer.getName());
+        existCustomer.setAddress(customer.getAddress());
+        existCustomer.setPhone(customer.getPhone());
         existCustomer.setCustomer_fax(customer.getCustomer_fax());
         existCustomer.setCustomer_email(customer.getCustomer_email());
         existCustomer.setCustomer_contactPerson(customer.getCustomer_contactPerson());

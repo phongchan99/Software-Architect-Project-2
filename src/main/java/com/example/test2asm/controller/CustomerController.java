@@ -28,6 +28,21 @@ public class CustomerController {
         return service.getCustomers();
     }
 
+    @GetMapping("/customerByName/{name}")
+    public Customer findCustomerByName(@PathVariable String name) {
+        return service.getCustomerByName(name);
+    }
+
+    @GetMapping("/customerByAddress/{address}")
+    public Customer findCustomerByAddress(@PathVariable String address) {
+        return service.getCustomerByAddress(address);
+    }
+
+    @GetMapping("/customerByPhone/{phone}")
+    public Customer findCustomerByPhone(@PathVariable String phone) {
+        return service.getCustomerByPhone(phone);
+    }
+
     @GetMapping("/customerById/{id}")
     public Customer findCustomerById(@PathVariable int id) {
         return service.getCustomerById(id);

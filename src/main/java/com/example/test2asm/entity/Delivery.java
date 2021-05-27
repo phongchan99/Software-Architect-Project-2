@@ -19,7 +19,7 @@ public class Delivery {
     private String delivery_date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "staff", referencedColumnName = "staff_name")
+    @JoinColumn(name = "staff", referencedColumnName = "name")
     private Staff staff;
 
     public Delivery(String deliveryNote_date, Staff staff) {

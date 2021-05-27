@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff,Integer> {
+    Staff findByName(String name);
 
-//    Staff findBystaff_name(String staff_name);
 }

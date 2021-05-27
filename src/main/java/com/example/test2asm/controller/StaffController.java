@@ -34,6 +34,11 @@ public class StaffController {
         return service.getStaffById(id);
     }
 
+    @GetMapping("/staffByName/{name}")
+    public Staff findStaffByName(@PathVariable String name) {
+        return service.getStaffByName(name);
+    }
+
     @PutMapping("/updateStaff")
     public Staff updateStaff(@RequestBody Staff staff) {
         return service.updateStaff(staff);

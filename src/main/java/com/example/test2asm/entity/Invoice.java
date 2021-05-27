@@ -22,7 +22,7 @@ public class Invoice {
     private String invoice_date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "staff",referencedColumnName = "staff_name")
+    @JoinColumn(name = "staff",referencedColumnName = "name")
     private Staff staff;
 
     public Invoice(String invoice_date, Staff staff) {

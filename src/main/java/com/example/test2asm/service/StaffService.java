@@ -25,6 +25,10 @@ public class StaffService {
         return repository.findById(id).orElse(null);
     }
 
+    public Staff getStaffByName(String name) {
+        return repository.findByName(name);
+    }
+
     public List<Staff> getStaffs() {
         return repository.findAll();
     }
@@ -36,7 +40,7 @@ public class StaffService {
 
     public Staff updateStaff(Staff staff) {
         Staff existStaff = repository.findById(staff.getStaff_id()).orElse(null);
-        existStaff.setStaff_name(staff.getStaff_name());
+        existStaff.setName(staff.getName());
         existStaff.setStaff_address(staff.getStaff_address());
         existStaff.setStaff_phone(staff.getStaff_phone());
         existStaff.setStaff_email(staff.getStaff_email());

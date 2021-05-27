@@ -19,9 +19,9 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customer_id;
-    private String customer_name;
-    private String customer_address;
-    private String customer_phone;
+    private String name;
+    private String address;
+    private String phone;
     private String customer_fax;
     private String customer_email;
     private String customer_contactPerson;
@@ -31,7 +31,9 @@ public class Customer {
 //    @JoinColumn(name = "Customer", referencedColumnName = "customer_name")
 //    private List<Invoice> invoices;
 
-    public Customer(String customer_name) {
-        this.customer_name = customer_name;
+    public Customer(String name, String address, String phone) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
     }
 }

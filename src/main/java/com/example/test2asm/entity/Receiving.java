@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -17,10 +18,10 @@ public class Receiving {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int receivingNote_id;
-    private String receivingNote_date;
+    private Date receivingNote_date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "staff", referencedColumnName = "staff_name")
+    @JoinColumn(name = "staff", referencedColumnName = "name")
     private Staff staff;
 
 //    @OneToOne(cascade = CascadeType.ALL)

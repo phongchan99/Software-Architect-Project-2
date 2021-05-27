@@ -17,34 +17,34 @@ public class Staff implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int staff_id;
-    private String staff_name;
+    private String name;
     private String staff_address;
     private String staff_phone;
     private String staff_email;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "Staff", referencedColumnName = "staff_name")
+    @JoinColumn(name = "Staff", referencedColumnName = "name")
     private List<OOrder> order;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "saleStaff", referencedColumnName = "staff_name")
+    @JoinColumn(name = "saleStaff", referencedColumnName = "name")
     private List<Invoice> invoices;
 
-    public Staff(String staff_name, String staff_address, String staff_phone, String staff_email) {
-        this.staff_name = staff_name;
+    public Staff(String name, String staff_address, String staff_phone, String staff_email) {
+        this.name = name;
         this.staff_address = staff_address;
         this.staff_phone = staff_phone;
         this.staff_email = staff_email;
     }
 
-    public String getStaff_name() {
-        return staff_name;
+    public String getName() {
+        return name;
     }
 
-    public void setStaff_name(String staff_name) {
-        this.staff_name = staff_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStaff_address() {
