@@ -38,8 +38,8 @@ public class OrderService {
         OrderDetail existOrder = repository.findById(orderDetail.getDetail_id()).orElse(null);
         existOrder.setOrder(orderDetail.getOrder());
         existOrder.setProduct(orderDetail.getProduct());
-        existOrder.setDetail_quantity(orderDetail.getDetail_quantity());
-        existOrder.setDetail_price(orderDetail.getDetail_price());
+        existOrder.setQuantity(orderDetail.getQuantity());
+        existOrder.setPrice(orderDetail.getPrice());
         return repository.save(existOrder);
     }
 }

@@ -33,9 +33,9 @@ public class CustomerControllerTests {
     @Test
     public void findAllCustomers() throws Exception {
         when(service.getCustomers()).thenReturn(Arrays.asList(
-                new Customer("Phong", "", ""),
-                new Customer("Khang", "", ""),
-                new Customer("Chris", "", "")
+                new Customer("Phong", "", "","","",""),
+                new Customer("Khang", "", "","","",""),
+                new Customer("Chris", "", "","","","")
         ));
 
         mockMvc.perform(

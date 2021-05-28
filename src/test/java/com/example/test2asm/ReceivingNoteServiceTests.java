@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class ReceivingNoteNoteServiceTests {
+public class ReceivingNoteServiceTests {
 
     @InjectMocks
     private ReceivingNoteService service;
@@ -30,12 +30,12 @@ public class ReceivingNoteNoteServiceTests {
     @Test
     public void findReceivingTest() {
         ReceivingNoteDetail receivingNoteDetail = new ReceivingNoteDetail();
-        receivingNoteDetail.setReceivingdetail_id(1);
+        receivingNoteDetail.setReceivingDetail_id(1);
 
         Mockito.when(repository.findById(1)).thenReturn(
                 Optional.of(receivingNoteDetail)
         );
-        assertEquals(1, receivingNoteDetail.getReceivingdetail_id());
+        assertEquals(1, receivingNoteDetail.getReceivingDetail_id());
     }
 
     @Test
@@ -43,17 +43,17 @@ public class ReceivingNoteNoteServiceTests {
         ReceivingNoteDetail detail1 = new ReceivingNoteDetail();
         ReceivingNoteDetail detail2 = new ReceivingNoteDetail();
         ReceivingNoteDetail detail3 = new ReceivingNoteDetail();
-        detail1.setReceivingdetail_id(1);
-        detail2.setReceivingdetail_id(2);
-        detail3.setReceivingdetail_id(3);
+        detail1.setReceivingDetail_id(1);
+        detail2.setReceivingDetail_id(2);
+        detail3.setReceivingDetail_id(3);
 
         Mockito.when(repository.findAll())
                 .thenReturn(Arrays.asList(detail1, detail2, detail3));
         List<ReceivingNoteDetail> receivingNoteDetails = service.getReceivings();
 
-        assertEquals(1, receivingNoteDetails.get(0).getReceivingdetail_id());
-        assertEquals(2, receivingNoteDetails.get(1).getReceivingdetail_id());
-        assertEquals(3, receivingNoteDetails.get(2).getReceivingdetail_id());
+        assertEquals(1, receivingNoteDetails.get(0).getReceivingDetail_id());
+        assertEquals(2, receivingNoteDetails.get(1).getReceivingDetail_id());
+        assertEquals(3, receivingNoteDetails.get(2).getReceivingDetail_id());
     }
 
     @Test

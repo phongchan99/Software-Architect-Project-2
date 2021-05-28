@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class SaveSaleSaleInvoiceServiceTests {
+public class SaleInvoiceServiceTests {
 
     @InjectMocks
     private SaleInvoiceService service;

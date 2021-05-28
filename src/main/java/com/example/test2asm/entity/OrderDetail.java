@@ -1,7 +1,5 @@
 package com.example.test2asm.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,22 +29,15 @@ public class OrderDetail {
     private Product product;
 
     @Column(name = "Quantity")
-    private int detail_quantity;
+    private int quantity;
 
     @Column(name = "totalPrice")
-    private float detail_price;
+    private float price;
 
-    public OrderDetail(OOrder order, Product product, int detail_quantity) {
+    public OrderDetail(OOrder order, Product product, int quantity) {
         this.order = order;
         this.product = product;
-        this.detail_quantity = detail_quantity;
+        this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getDetail_quantity() {
-        return detail_quantity;
-    }
 }

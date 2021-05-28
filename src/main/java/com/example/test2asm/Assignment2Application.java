@@ -28,6 +28,8 @@ public class Assignment2Application {
         CustomerRepository customerRepository = configurableApplicationContext.getBean(CustomerRepository.class);
         InvoiceRepository invoiceRepository = configurableApplicationContext.getBean(InvoiceRepository.class);
         InvoiceDetailRepository invoiceDetailRepository = configurableApplicationContext.getBean(InvoiceDetailRepository.class);
+        DeliveryRepository deliveryRepository = configurableApplicationContext.getBean(DeliveryRepository.class);
+        DeliveryDetailRepository deliveryDetailRepository = configurableApplicationContext.getBean(DeliveryDetailRepository.class);
 		//</editor-fold>
 
 		//<editor-fold desc="CATEGORY">
@@ -39,16 +41,16 @@ public class Assignment2Application {
 		//</editor-fold>
 
 		//<editor-fold desc="PROVIDER">
-        Provider north = new Provider("Apple","North","","","","");
-        Provider south = new Provider("Samsung","South","","","","");
+        Provider north = new Provider("Apple","AppleAddress","ApplePhone","AppleFax","AppleEmail","AppleContactPerson");
+        Provider south = new Provider("Samsung","SamsungAddress","SamsungPhone","SamsungFax","SamsungEmail","SamsungContactPerson");
         List<Provider> providers = Arrays.asList(north, south);
         providerRepository.saveAll(providers);
 		//</editor-fold>
 
 		//<editor-fold desc="STAFF">
-        Staff staff1 = new Staff("Phong", "Ho Chi Minh", "01234", "phongchan99");
-        Staff staff2 = new Staff("Audrey", "Ha Noi", "05678", "Audreysomething");
-        Staff staff3 = new Staff("Jimmy", "Go Vap", "012367", "Khang@gmail");
+        Staff staff1 = new Staff("Phong", "PhongAddress","PhongPhone","PhongEmail");
+        Staff staff2 = new Staff("Khang","KhangAddress","KhangPhone","KhangEmail");
+        Staff staff3 = new Staff("Chris","ChrisAddress","ChrisPhone","ChrisEmail");
         List<Staff> staffs = Arrays.asList(staff1, staff2, staff3);
         staffRepository.saveAll(staffs);
 		//</editor-fold>
@@ -61,24 +63,24 @@ public class Assignment2Application {
 		//</editor-fold>
 
 		//<editor-fold desc="PRODUCT">
-        Product phone = new Product("iphone11","","","","", mobiles, 2000);
-        Product electronic = new Product("Razer Laptop","","","","", computer, 5000);
-        Product device = new Product("AirpodsPro","","","","", mobiles, 500);
-        List<Product> products = Arrays.asList(phone, electronic, device);
+        Product phone = new Product("Phone","PhoneModel","PhoneBrand","PhoneCompany","PhoneDesc", mobiles, 2000);
+        Product laptop = new Product("Laptop","LaptopModel","LaptopBrand","LaptopCompany","LaptopDesc", computer, 5000);
+        Product bike = new Product("Bike","BikeModel","BikeBrand","BikeCompany","BikeDesc", vehicle, 500);
+        List<Product> products = Arrays.asList(phone, laptop, bike);
         productRepository.saveAll(products);
 		//</editor-fold>
 
 		//<editor-fold desc="ORDER DETAIL">
         OrderDetail detailNum1 = new OrderDetail(order1, phone, 1);
-        OrderDetail detailNum2 = new OrderDetail(order1, device, 3);
-        OrderDetail detailNum3 = new OrderDetail(order2, electronic, 2);
+        OrderDetail detailNum2 = new OrderDetail(order1, bike, 3);
+        OrderDetail detailNum3 = new OrderDetail(order2, laptop, 2);
         List<OrderDetail> orderDetails = Arrays.asList(detailNum1, detailNum2, detailNum3);
         orderDetailRepository.saveAll(orderDetails);
 		//</editor-fold>
 
 		//<editor-fold desc="RECEIVING">
-        ReceivingNote note1 = new ReceivingNote("2021-05-25", staff3);
-        ReceivingNote note2 = new ReceivingNote("2021-05-26", staff1);
+        ReceivingNote note1 = new ReceivingNote("2021-05-20", staff3);
+        ReceivingNote note2 = new ReceivingNote("2021-05-21", staff1);
         List<ReceivingNote> receivingNotes = Arrays.asList(note1, note2);
         receivingRepository.saveAll(receivingNotes);
 		//</editor-fold>
@@ -90,10 +92,26 @@ public class Assignment2Application {
         receivingDetailRepository.saveAll(receivingNoteDetails);
 		//</editor-fold>
 
+        //<editor-fold desc="DELIVERY">
+        DeliveryNote deli1 = new DeliveryNote("2021-05-23", staff1);
+        DeliveryNote deli2 = new DeliveryNote("2021-05-24", staff2);
+        DeliveryNote deli3 = new DeliveryNote("2021-05-25", staff3);
+        List<DeliveryNote> deliveryNotes = Arrays.asList(deli1, deli2, deli3);
+        deliveryRepository.saveAll(deliveryNotes);
+        //</editor-fold>
+
+        //<editor-fold desc="DELIVERY DETAIL">
+        DeliveryNoteDetail deliveryNoteDetail1 = new DeliveryNoteDetail(deli1,phone, 11);
+        DeliveryNoteDetail deliveryNoteDetail2 = new DeliveryNoteDetail(deli2,laptop, 22);
+        DeliveryNoteDetail deliveryNoteDetail3 = new DeliveryNoteDetail(deli3,bike, 33);
+        List<DeliveryNoteDetail> deliveryNoteDetails = Arrays.asList(deliveryNoteDetail1, deliveryNoteDetail2, deliveryNoteDetail3);
+        deliveryDetailRepository.saveAll(deliveryNoteDetails);
+        //</editor-fold>
+
 		//<editor-fold desc="CUSTOMER">
-        Customer customer1 = new Customer("Luan", "LuanAddress", "LuanPhone");
-        Customer customer2 = new Customer("Nguyen", "NguyenAddress", "NguyenPhone");
-        Customer customer3 = new Customer("Quan", "QuanAddress", "QuanPhone");
+        Customer customer1 = new Customer("Luan", "LuanAddress", "LuanPhone","LuanFax","LuanEmail","LuanContactPerson");
+        Customer customer2 = new Customer("Nguyen", "NguyenAddress", "NguyenPhone","NguyenFax","NguyenEmail","NguyenContactPerson");
+        Customer customer3 = new Customer("Quan", "QuanAddress", "QuanPhone","QuanFax","QuanEmail","QuanContactPerson");
         List<Customer> customers = Arrays.asList(customer1, customer2, customer3);
         customerRepository.saveAll(customers);
 		//</editor-fold>
@@ -108,8 +126,8 @@ public class Assignment2Application {
 
 		//<editor-fold desc="INVOICE DETAIL">
         SaleInvoiceDetail saleInvoiceDetail1 = new SaleInvoiceDetail(saleInvoice1, phone, customer1, 5, 0);
-        SaleInvoiceDetail saleInvoiceDetail2 = new SaleInvoiceDetail(saleInvoice2, electronic, customer2, 3, 0);
-        SaleInvoiceDetail saleInvoiceDetail3 = new SaleInvoiceDetail(saleInvoice3, device, customer3, 2, 0);
+        SaleInvoiceDetail saleInvoiceDetail2 = new SaleInvoiceDetail(saleInvoice2, laptop, customer2, 3, 0);
+        SaleInvoiceDetail saleInvoiceDetail3 = new SaleInvoiceDetail(saleInvoice3, bike, customer3, 2, 0);
         List<SaleInvoiceDetail> saleInvoiceDetails = Arrays.asList(saleInvoiceDetail1, saleInvoiceDetail2, saleInvoiceDetail3);
         invoiceDetailRepository.saveAll(saleInvoiceDetails);
 		//</editor-fold>

@@ -16,7 +16,7 @@ public class ReceivingNoteDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int receivingdetail_id;
+    private int receivingDetail_id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ReceivingNoteId", referencedColumnName = "receivingNote_id")

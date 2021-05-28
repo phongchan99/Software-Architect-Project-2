@@ -29,7 +29,7 @@ public class Staff implements Serializable {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "saleStaff", referencedColumnName = "name")
+    @JoinColumn(name = "staff", referencedColumnName = "name")
     private List<SaleInvoice> saleInvoices;
 
     public Staff(String name, String staff_address, String staff_phone, String staff_email) {
@@ -39,35 +39,4 @@ public class Staff implements Serializable {
         this.staff_email = staff_email;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStaff_address() {
-        return staff_address;
-    }
-
-    public void setStaff_address(String staff_address) {
-        this.staff_address = staff_address;
-    }
-
-    public String getStaff_phone() {
-        return staff_phone;
-    }
-
-    public void setStaff_phone(String staff_phone) {
-        this.staff_phone = staff_phone;
-    }
-
-    public String getStaff_email() {
-        return staff_email;
-    }
-
-    public void setStaff_email(String staff_email) {
-        this.staff_email = staff_email;
-    }
 }

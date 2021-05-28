@@ -18,13 +18,13 @@ public class ReceivingNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int receivingNote_id;
-    private Date receivingNote_date;
+    private String receivingNote_date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "staff", referencedColumnName = "name")
     private Staff staff;
 
-    public ReceivingNote(String receiving_date, Staff staff) {
+    public ReceivingNote(String receivingNote_date, Staff staff) {
         this.receivingNote_date = receivingNote_date;
         this.staff = staff;
     }

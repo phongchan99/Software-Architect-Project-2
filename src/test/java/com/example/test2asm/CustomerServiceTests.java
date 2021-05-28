@@ -27,7 +27,7 @@ public class CustomerServiceTests {
     @Test
     public void findCustomerTest() {
         Mockito.when(repository.findById(1)).thenReturn(
-                Optional.of(new Customer("Phong", "", ""))
+                Optional.of(new Customer("Phong", "", "","","",""))
         );
 
         Customer customer = service.getCustomerById(1);
@@ -38,9 +38,9 @@ public class CustomerServiceTests {
     @Test
     public void findAllCustomerTest() {
         Mockito.when(repository.findAll()).thenReturn(Arrays.asList(
-                new Customer("Phong", "", ""),
-                new Customer("Chris", "", ""),
-                new Customer("Khang", "", "")
+                new Customer("Phong", "", "","","",""),
+                new Customer("Chris", "", "","","",""),
+                new Customer("Khang", "", "","","","")
         ));
 
         List<Customer> customers = service.getCustomers();

@@ -35,7 +35,7 @@ public class ReceivingNoteService {
     }
 
     public ReceivingNoteDetail updateReceiving(ReceivingNoteDetail receivingNoteDetail) {
-        ReceivingNoteDetail existReceiving = repository.findById(receivingNoteDetail.getReceivingdetail_id()).orElse(null);
+        ReceivingNoteDetail existReceiving = repository.findById(receivingNoteDetail.getReceivingDetail_id()).orElse(null);
         existReceiving.setReceivingNote(receivingNoteDetail.getReceivingNote());
 //        existReceiving.setProduct(receivingDetail.getProduct());
 //        existReceiving.setReceivingdetail_quantity(receivingDetail.getReceivingdetail_quantity());

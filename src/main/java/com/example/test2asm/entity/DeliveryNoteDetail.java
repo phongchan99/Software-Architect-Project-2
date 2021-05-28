@@ -16,20 +16,22 @@ public class DeliveryNoteDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int deliverydetail_id;
+    private int deliveryDetail_id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "DeliveryNoteId", referencedColumnName = "delivery_id")
+    @JoinColumn(name = "DeliveryNoteId", referencedColumnName = "deliveryNote_id")
     private DeliveryNote deliveryNote;
 
     @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "productId", referencedColumnName = "product_id")
     private Product product;
 
     @Column(name = "Quantity")
-    private int delivery_quantity;
+    private int quantity;
 
-    public DeliveryNoteDetail(DeliveryNote deliveryNote, int delivery_quantity) {
+    public DeliveryNoteDetail(DeliveryNote deliveryNote, Product product, int quantity) {
         this.deliveryNote = deliveryNote;
-        this.delivery_quantity = delivery_quantity;
+        this.product = product;
+        this.quantity = quantity;
     }
 }

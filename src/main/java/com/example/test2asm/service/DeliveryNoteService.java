@@ -35,9 +35,9 @@ public class DeliveryNoteService {
     }
 
     public DeliveryNoteDetail updateDelivery(DeliveryNoteDetail deliveryNoteDetail) {
-        DeliveryNoteDetail existDelivery = repository.findById(deliveryNoteDetail.getDeliverydetail_id()).orElse(null);
+        DeliveryNoteDetail existDelivery = repository.findById(deliveryNoteDetail.getDeliveryDetail_id()).orElse(null);
         existDelivery.setDeliveryNote(deliveryNoteDetail.getDeliveryNote());
-        existDelivery.setDelivery_quantity(deliveryNoteDetail.getDelivery_quantity());
+        existDelivery.setQuantity(deliveryNoteDetail.getQuantity());
         return repository.save(existDelivery);
     }
 }

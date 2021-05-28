@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class DeliveryNoteNoteServiceTests {
+public class DeliveryNoteServiceTests {
 
     @InjectMocks
     private DeliveryNoteService service;
@@ -30,12 +30,12 @@ public class DeliveryNoteNoteServiceTests {
     @Test
     public void findDeliveryTest() {
         DeliveryNoteDetail deliveryNoteDetail = new DeliveryNoteDetail();
-        deliveryNoteDetail.setDeliverydetail_id(1);
+        deliveryNoteDetail.setDeliveryDetail_id(1);
 
         Mockito.when(repository.findById(1)).thenReturn(
                 Optional.of(deliveryNoteDetail)
         );
-        assertEquals(1, deliveryNoteDetail.getDeliverydetail_id());
+        assertEquals(1, deliveryNoteDetail.getDeliveryDetail_id());
     }
 
     @Test
@@ -43,17 +43,17 @@ public class DeliveryNoteNoteServiceTests {
         DeliveryNoteDetail detail1 = new DeliveryNoteDetail();
         DeliveryNoteDetail detail2 = new DeliveryNoteDetail();
         DeliveryNoteDetail detail3 = new DeliveryNoteDetail();
-        detail1.setDeliverydetail_id(1);
-        detail2.setDeliverydetail_id(2);
-        detail3.setDeliverydetail_id(3);
+        detail1.setDeliveryDetail_id(1);
+        detail2.setDeliveryDetail_id(2);
+        detail3.setDeliveryDetail_id(3);
 
         Mockito.when(repository.findAll())
                 .thenReturn(Arrays.asList(detail1, detail2, detail3));
         List<DeliveryNoteDetail> deliveryNoteDetails = service.getDeliveries();
 
-        assertEquals(1, deliveryNoteDetails.get(0).getDeliverydetail_id());
-        assertEquals(2, deliveryNoteDetails.get(1).getDeliverydetail_id());
-        assertEquals(3, deliveryNoteDetails.get(2).getDeliverydetail_id());
+        assertEquals(1, deliveryNoteDetails.get(0).getDeliveryDetail_id());
+        assertEquals(2, deliveryNoteDetails.get(1).getDeliveryDetail_id());
+        assertEquals(3, deliveryNoteDetails.get(2).getDeliveryDetail_id());
     }
 
     @Test
