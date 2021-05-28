@@ -30,12 +30,12 @@ public class DeliveryServiceTests {
 
     @Test
     public void findDeliveryTest() {
-        DeliveryDetail deliveryDetail;
-        Mockito.when(repository.findById(1)).thenReturn(
-                Optional.of(deliveryDetail = new DeliveryDetail(new Delivery(), 1))
-        );
-
+        DeliveryDetail deliveryDetail = new DeliveryDetail();
         deliveryDetail.setDeliverydetail_id(1);
+
+        Mockito.when(repository.findById(1)).thenReturn(
+                Optional.of(deliveryDetail)
+        );
         assertEquals(1, deliveryDetail.getDeliverydetail_id());
     }
 

@@ -1,8 +1,8 @@
 package com.example.test2asm;
 
-import com.example.test2asm.controller.DeliveryController;
-import com.example.test2asm.entity.DeliveryDetail;
-import com.example.test2asm.service.DeliveryService;
+import com.example.test2asm.controller.ReceivingController;
+import com.example.test2asm.entity.ReceivingDetail;
+import com.example.test2asm.service.ReceivingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +20,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DeliveryController.class)
-public class DeliveryControllerTests {
+@WebMvcTest(ReceivingController.class)
+public class ReceivingControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private DeliveryService service;
+    private ReceivingService service;
 
     @Test
-    public void findAllDelivery() throws Exception {
-        when(service.getDeliveries()).thenReturn(Arrays.asList(
-                new DeliveryDetail(), new DeliveryDetail(), new DeliveryDetail()
+    public void findAllReceivings() throws Exception {
+        when(service.getReceivings()).thenReturn(Arrays.asList(
+                new ReceivingDetail(), new ReceivingDetail(), new ReceivingDetail()
         ));
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/deliveries"))
+                MockMvcRequestBuilders.get("/receivings"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{}, {}, {}]"));
     }
 
     @Test
     public void findAllEmpty() throws Exception {
-        when(service.getDeliveries()).thenReturn(Collections.emptyList());
+        when(service.getReceivings()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/deliveries"))
+                MockMvcRequestBuilders.get("/receivings"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }
