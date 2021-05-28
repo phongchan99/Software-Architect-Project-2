@@ -34,7 +34,12 @@ public class Provider implements Serializable {
     @JoinColumn(name = "Provider", referencedColumnName = "provider_name")
     private List<OOrder> order;
 
-    public Provider(String provider_name) {
+    public Provider(String provider_name, String provider_address, String provider_phone, String provider_fax, String provider_email, String provider_contactPerson) {
         this.provider_name = provider_name;
+        this.provider_address = provider_address;
+        this.provider_phone = provider_phone;
+        this.provider_fax = provider_fax;
+        this.provider_email = provider_email;
+        this.provider_contactPerson = provider_contactPerson;
     }
 }

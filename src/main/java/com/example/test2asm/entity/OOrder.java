@@ -20,7 +20,7 @@ public class OOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
-    private String order_date;
+    private String date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "staff",referencedColumnName = "name")
@@ -34,8 +34,8 @@ public class OOrder implements Serializable {
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
-    public OOrder(String order_date, Staff staff, Provider provider) {
-        this.order_date = order_date;
+    public OOrder(String date, Staff staff, Provider provider) {
+        this.date = date;
         this.staff = staff;
         this.provider = provider;
     }

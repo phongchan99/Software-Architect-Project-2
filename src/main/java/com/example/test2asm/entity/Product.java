@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product implements Serializable {
 
     @Id
@@ -43,8 +43,12 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private List<DeliveryDetail> deliveryDetails;
 
-    public Product(String product_name, Category category, float product_price) {
+    public Product(String product_name, String product_model, String product_brand, String product_company, String product_desc, Category category, float product_price) {
         this.product_name = product_name;
+        this.product_model = product_model;
+        this.product_brand = product_brand;
+        this.product_company = product_company;
+        this.product_desc = product_desc;
         this.category = category;
         this.product_price = product_price;
     }

@@ -39,8 +39,8 @@ public class Test2asmApplication {
 		//</editor-fold>
 
 		//<editor-fold desc="PROVIDER">
-        Provider north = new Provider("Apple");
-        Provider south = new Provider("Samsung");
+        Provider north = new Provider("Apple","North","","","","");
+        Provider south = new Provider("Samsung","South","","","","");
         List<Provider> providers = Arrays.asList(north, south);
         providerRepository.saveAll(providers);
 		//</editor-fold>
@@ -61,9 +61,9 @@ public class Test2asmApplication {
 		//</editor-fold>
 
 		//<editor-fold desc="PRODUCT">
-        Product phone = new Product("iphone11", mobiles, 2000);
-        Product electronic = new Product("Razer Laptop", computer, 5000);
-        Product device = new Product("AirpodsPro", mobiles, 500);
+        Product phone = new Product("iphone11","","","","", mobiles, 2000);
+        Product electronic = new Product("Razer Laptop","","","","", computer, 5000);
+        Product device = new Product("AirpodsPro","","","","", mobiles, 500);
         List<Product> products = Arrays.asList(phone, electronic, device);
         productRepository.saveAll(products);
 		//</editor-fold>
