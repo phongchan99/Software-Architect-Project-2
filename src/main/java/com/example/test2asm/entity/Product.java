@@ -1,16 +1,12 @@
 package com.example.test2asm.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -41,7 +37,7 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
-    private List<DeliveryDetail> deliveryDetails;
+    private List<DeliveryNoteDetail> deliveryNoteDetails;
 
     public Product(String product_name, String product_model, String product_brand, String product_company, String product_desc, Category category, float product_price) {
         this.product_name = product_name;

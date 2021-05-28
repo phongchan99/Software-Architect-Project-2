@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ReceivingDetail")
 
-public class ReceivingDetail {
+public class ReceivingNoteDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +20,14 @@ public class ReceivingDetail {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ReceivingNoteId", referencedColumnName = "receivingNote_id")
-    private Receiving receiving;
+    private ReceivingNote receivingNote;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "orderDetaiId")
     private OrderDetail orderDetail;
 
-    public ReceivingDetail(Receiving receiving, OrderDetail orderDetail) {
-        this.receiving = receiving;
+    public ReceivingNoteDetail(ReceivingNote receivingNote, OrderDetail orderDetail) {
+        this.receivingNote = receivingNote;
         this.orderDetail = orderDetail;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.test2asm;
 
-import com.example.test2asm.controller.ReceivingController;
-import com.example.test2asm.entity.ReceivingDetail;
-import com.example.test2asm.service.ReceivingService;
+import com.example.test2asm.controller.SaleInvoiceController;
+import com.example.test2asm.entity.SaleInvoiceDetail;
+import com.example.test2asm.service.SaleInvoiceService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +20,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ReceivingController.class)
-public class ReceivingControllerTests {
+@WebMvcTest(SaleInvoiceController.class)
+public class SaleSaleSaleInvoiceControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private ReceivingService service;
+    private SaleInvoiceService service;
 
     @Test
-    public void findAllReceivings() throws Exception {
-        when(service.getReceivings()).thenReturn(Arrays.asList(
-                new ReceivingDetail(), new ReceivingDetail(), new ReceivingDetail()
+    public void findAllInvoices() throws Exception {
+        when(service.getInvoices()).thenReturn(Arrays.asList(
+                new SaleInvoiceDetail(), new SaleInvoiceDetail(), new SaleInvoiceDetail()
         ));
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/receivings"))
+                MockMvcRequestBuilders.get("/invoices"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{}, {}, {}]"));
     }
 
     @Test
     public void findAllEmpty() throws Exception {
-        when(service.getReceivings()).thenReturn(Collections.emptyList());
+        when(service.getInvoices()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/receivings"))
+                MockMvcRequestBuilders.get("/invoices"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }

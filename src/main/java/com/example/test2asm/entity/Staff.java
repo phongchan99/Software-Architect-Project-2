@@ -30,7 +30,7 @@ public class Staff implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "saleStaff", referencedColumnName = "name")
-    private List<Invoice> invoices;
+    private List<SaleInvoice> saleInvoices;
 
     public Staff(String name, String staff_address, String staff_phone, String staff_email) {
         this.name = name;

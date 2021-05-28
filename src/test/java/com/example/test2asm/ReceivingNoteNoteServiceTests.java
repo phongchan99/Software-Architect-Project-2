@@ -1,8 +1,8 @@
 package com.example.test2asm;
 
-import com.example.test2asm.entity.ReceivingDetail;
+import com.example.test2asm.entity.ReceivingNoteDetail;
 import com.example.test2asm.repository.ReceivingDetailRepository;
-import com.example.test2asm.service.ReceivingService;
+import com.example.test2asm.service.ReceivingNoteService;
 import javassist.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,40 +20,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class ReceivingServiceTests {
+public class ReceivingNoteNoteServiceTests {
 
     @InjectMocks
-    private ReceivingService service;
+    private ReceivingNoteService service;
     @Mock
     private ReceivingDetailRepository repository;
 
     @Test
     public void findReceivingTest() {
-        ReceivingDetail receivingDetail = new ReceivingDetail();
-        receivingDetail.setReceivingdetail_id(1);
+        ReceivingNoteDetail receivingNoteDetail = new ReceivingNoteDetail();
+        receivingNoteDetail.setReceivingdetail_id(1);
 
         Mockito.when(repository.findById(1)).thenReturn(
-                Optional.of(receivingDetail)
+                Optional.of(receivingNoteDetail)
         );
-        assertEquals(1, receivingDetail.getReceivingdetail_id());
+        assertEquals(1, receivingNoteDetail.getReceivingdetail_id());
     }
 
     @Test
     public void findAllReceivingTest() {
-        ReceivingDetail detail1 = new ReceivingDetail();
-        ReceivingDetail detail2 = new ReceivingDetail();
-        ReceivingDetail detail3 = new ReceivingDetail();
+        ReceivingNoteDetail detail1 = new ReceivingNoteDetail();
+        ReceivingNoteDetail detail2 = new ReceivingNoteDetail();
+        ReceivingNoteDetail detail3 = new ReceivingNoteDetail();
         detail1.setReceivingdetail_id(1);
         detail2.setReceivingdetail_id(2);
         detail3.setReceivingdetail_id(3);
 
         Mockito.when(repository.findAll())
                 .thenReturn(Arrays.asList(detail1, detail2, detail3));
-        List<ReceivingDetail> receivingDetails = service.getReceivings();
+        List<ReceivingNoteDetail> receivingNoteDetails = service.getReceivings();
 
-        assertEquals(1, receivingDetails.get(0).getReceivingdetail_id());
-        assertEquals(2, receivingDetails.get(1).getReceivingdetail_id());
-        assertEquals(3, receivingDetails.get(2).getReceivingdetail_id());
+        assertEquals(1, receivingNoteDetails.get(0).getReceivingdetail_id());
+        assertEquals(2, receivingNoteDetails.get(1).getReceivingdetail_id());
+        assertEquals(3, receivingNoteDetails.get(2).getReceivingdetail_id());
     }
 
     @Test
@@ -61,6 +61,6 @@ public class ReceivingServiceTests {
         Mockito.when(repository.findById(1)).thenReturn(
                 Optional.empty()
         );
-        ReceivingDetail receivingDetail = service.getReceivingById(1);
+        ReceivingNoteDetail receivingNoteDetail = service.getReceivingById(1);
     }
 }

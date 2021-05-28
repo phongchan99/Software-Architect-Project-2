@@ -1,6 +1,6 @@
 package com.example.test2asm.service;
 
-import com.example.test2asm.entity.ReceivingDetail;
+import com.example.test2asm.entity.ReceivingNoteDetail;
 import com.example.test2asm.repository.ReceivingDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,24 +8,24 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ReceivingService {
+public class ReceivingNoteService {
 
     @Autowired
     private ReceivingDetailRepository repository;
 
-    public ReceivingDetail saveReceiving(ReceivingDetail receivingDetail) {
-        return repository.save(receivingDetail);
+    public ReceivingNoteDetail saveReceiving(ReceivingNoteDetail receivingNoteDetail) {
+        return repository.save(receivingNoteDetail);
     }
 
-    public List<ReceivingDetail> saveReceivings(List<ReceivingDetail> receivingDetails) {
-        return repository.saveAll(receivingDetails);
+    public List<ReceivingNoteDetail> saveReceivings(List<ReceivingNoteDetail> receivingNoteDetails) {
+        return repository.saveAll(receivingNoteDetails);
     }
 
-    public ReceivingDetail getReceivingById(int id) {
+    public ReceivingNoteDetail getReceivingById(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<ReceivingDetail> getReceivings() {
+    public List<ReceivingNoteDetail> getReceivings() {
         return repository.findAll();
     }
 
@@ -34,9 +34,9 @@ public class ReceivingService {
         return "Receiving Note number " + id + " deleted";
     }
 
-    public ReceivingDetail updateReceiving(ReceivingDetail receivingDetail) {
-        ReceivingDetail existReceiving = repository.findById(receivingDetail.getReceivingdetail_id()).orElse(null);
-        existReceiving.setReceiving(receivingDetail.getReceiving());
+    public ReceivingNoteDetail updateReceiving(ReceivingNoteDetail receivingNoteDetail) {
+        ReceivingNoteDetail existReceiving = repository.findById(receivingNoteDetail.getReceivingdetail_id()).orElse(null);
+        existReceiving.setReceivingNote(receivingNoteDetail.getReceivingNote());
 //        existReceiving.setProduct(receivingDetail.getProduct());
 //        existReceiving.setReceivingdetail_quantity(receivingDetail.getReceivingdetail_quantity());
         return repository.save(existReceiving);

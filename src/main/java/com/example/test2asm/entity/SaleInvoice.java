@@ -1,29 +1,32 @@
 package com.example.test2asm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "deliveryNote")
-public class Delivery {
+@Table(name = "Invoice")
+
+public class SaleInvoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int delivery_id;
-    private String delivery_date;
+    private int invoice_id;
+    private String invoice_date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "staff", referencedColumnName = "name")
+    @JoinColumn(name = "staff",referencedColumnName = "name")
     private Staff staff;
 
-    public Delivery(String deliveryNote_date, Staff staff) {
-        this.delivery_date = delivery_date;
+    public SaleInvoice(String invoice_date, Staff staff) {
+        this.invoice_date = invoice_date;
         this.staff = staff;
     }
 }

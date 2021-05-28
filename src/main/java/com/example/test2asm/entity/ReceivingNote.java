@@ -6,27 +6,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Invoice")
-
-public class Invoice {
+@Table(name = "ReceivingNote")
+public class ReceivingNote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int invoice_id;
-    private String invoice_date;
+    private int receivingNote_id;
+    private Date receivingNote_date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "staff",referencedColumnName = "name")
+    @JoinColumn(name = "staff", referencedColumnName = "name")
     private Staff staff;
 
-    public Invoice(String invoice_date, Staff staff) {
-        this.invoice_date = invoice_date;
+    public ReceivingNote(String receiving_date, Staff staff) {
+        this.receivingNote_date = receivingNote_date;
         this.staff = staff;
     }
+
+
 }

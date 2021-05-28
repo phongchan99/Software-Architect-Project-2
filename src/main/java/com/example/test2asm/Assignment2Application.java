@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
-public class Test2asmApplication {
+public class Assignment2Application {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext configurableApplicationContext =
-                SpringApplication.run(Test2asmApplication.class, args);
+                SpringApplication.run(Assignment2Application.class, args);
 
         //<editor-fold desc="REPOSITORY">
         OrderRepository orderRepository = configurableApplicationContext.getBean(OrderRepository.class);
@@ -77,17 +77,17 @@ public class Test2asmApplication {
 		//</editor-fold>
 
 		//<editor-fold desc="RECEIVING">
-        Receiving note1 = new Receiving("2021-05-25", staff3);
-        Receiving note2 = new Receiving("2021-05-26", staff1);
-        List<Receiving> receivings = Arrays.asList(note1, note2);
-        receivingRepository.saveAll(receivings);
+        ReceivingNote note1 = new ReceivingNote("2021-05-25", staff3);
+        ReceivingNote note2 = new ReceivingNote("2021-05-26", staff1);
+        List<ReceivingNote> receivingNotes = Arrays.asList(note1, note2);
+        receivingRepository.saveAll(receivingNotes);
 		//</editor-fold>
 
 		//<editor-fold desc="RECEIVING DETAIL">
-        ReceivingDetail receivingDetail1 = new ReceivingDetail(note1, detailNum2);
-        ReceivingDetail receivingDetail2 = new ReceivingDetail(note2, detailNum1);
-        List<ReceivingDetail> receivingDetails = Arrays.asList(receivingDetail1, receivingDetail2);
-        receivingDetailRepository.saveAll(receivingDetails);
+        ReceivingNoteDetail receivingNoteDetail1 = new ReceivingNoteDetail(note1, detailNum2);
+        ReceivingNoteDetail receivingNoteDetail2 = new ReceivingNoteDetail(note2, detailNum1);
+        List<ReceivingNoteDetail> receivingNoteDetails = Arrays.asList(receivingNoteDetail1, receivingNoteDetail2);
+        receivingDetailRepository.saveAll(receivingNoteDetails);
 		//</editor-fold>
 
 		//<editor-fold desc="CUSTOMER">
@@ -99,19 +99,19 @@ public class Test2asmApplication {
 		//</editor-fold>
 
 		//<editor-fold desc="INVOICE">
-        Invoice invoice1 = new Invoice("2021-05-28", staff1);
-        Invoice invoice2 = new Invoice("2021-05-29", staff2);
-        Invoice invoice3 = new Invoice("2021-05-30", staff3);
-        List<Invoice> invoices = Arrays.asList(invoice1, invoice2, invoice3);
-        invoiceRepository.saveAll(invoices);
+        SaleInvoice saleInvoice1 = new SaleInvoice("2021-05-28", staff1);
+        SaleInvoice saleInvoice2 = new SaleInvoice("2021-05-29", staff2);
+        SaleInvoice saleInvoice3 = new SaleInvoice("2021-05-30", staff3);
+        List<SaleInvoice> saleInvoices = Arrays.asList(saleInvoice1, saleInvoice2, saleInvoice3);
+        invoiceRepository.saveAll(saleInvoices);
 		//</editor-fold>
 
 		//<editor-fold desc="INVOICE DETAIL">
-        InvoiceDetail invoiceDetail1 = new InvoiceDetail(invoice1, phone, customer1, 5, 0);
-        InvoiceDetail invoiceDetail2 = new InvoiceDetail(invoice2, electronic, customer2, 3, 0);
-        InvoiceDetail invoiceDetail3 = new InvoiceDetail(invoice3, device, customer3, 2, 0);
-        List<InvoiceDetail> invoiceDetails = Arrays.asList(invoiceDetail1, invoiceDetail2, invoiceDetail3);
-        invoiceDetailRepository.saveAll(invoiceDetails);
+        SaleInvoiceDetail saleInvoiceDetail1 = new SaleInvoiceDetail(saleInvoice1, phone, customer1, 5, 0);
+        SaleInvoiceDetail saleInvoiceDetail2 = new SaleInvoiceDetail(saleInvoice2, electronic, customer2, 3, 0);
+        SaleInvoiceDetail saleInvoiceDetail3 = new SaleInvoiceDetail(saleInvoice3, device, customer3, 2, 0);
+        List<SaleInvoiceDetail> saleInvoiceDetails = Arrays.asList(saleInvoiceDetail1, saleInvoiceDetail2, saleInvoiceDetail3);
+        invoiceDetailRepository.saveAll(saleInvoiceDetails);
 		//</editor-fold>
     }
 

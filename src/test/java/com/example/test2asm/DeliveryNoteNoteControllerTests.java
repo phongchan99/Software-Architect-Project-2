@@ -1,8 +1,8 @@
 package com.example.test2asm;
 
-import com.example.test2asm.controller.DeliveryController;
-import com.example.test2asm.entity.DeliveryDetail;
-import com.example.test2asm.service.DeliveryService;
+import com.example.test2asm.controller.DeliveryNoteController;
+import com.example.test2asm.entity.DeliveryNoteDetail;
+import com.example.test2asm.service.DeliveryNoteService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +20,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DeliveryController.class)
-public class DeliveryControllerTests {
+@WebMvcTest(DeliveryNoteController.class)
+public class DeliveryNoteNoteControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private DeliveryService service;
+    private DeliveryNoteService service;
 
     @Test
     public void findAllDelivery() throws Exception {
         when(service.getDeliveries()).thenReturn(Arrays.asList(
-                new DeliveryDetail(), new DeliveryDetail(), new DeliveryDetail()
+                new DeliveryNoteDetail(), new DeliveryNoteDetail(), new DeliveryNoteDetail()
         ));
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/deliveries"))

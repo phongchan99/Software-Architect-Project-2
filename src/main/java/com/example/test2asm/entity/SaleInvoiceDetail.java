@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "InvoiceDetail")
 
-public class InvoiceDetail {
+public class SaleInvoiceDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class InvoiceDetail {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "invoiceId", referencedColumnName = "invoice_id")
-    private Invoice invoice;
+    private SaleInvoice saleInvoice;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumns({
@@ -39,8 +39,8 @@ public class InvoiceDetail {
     @Column(name = "totalPrice")
     private float invoice_totalPrice;
 
-    public InvoiceDetail(Invoice invoice, Product product, Customer customer, int invoice_quantity, float invoice_totalPrice) {
-        this.invoice = invoice;
+    public SaleInvoiceDetail(SaleInvoice saleInvoice, Product product, Customer customer, int invoice_quantity, float invoice_totalPrice) {
+        this.saleInvoice = saleInvoice;
         this.product = product;
         this.customer = customer;
         this.invoice_quantity = invoice_quantity;

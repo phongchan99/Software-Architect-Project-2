@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DeliveryDetail")
 
-public class DeliveryDetail {
+public class DeliveryNoteDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class DeliveryDetail {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "DeliveryNoteId", referencedColumnName = "delivery_id")
-    private Delivery delivery;
+    private DeliveryNote deliveryNote;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private Product product;
@@ -28,8 +28,8 @@ public class DeliveryDetail {
     @Column(name = "Quantity")
     private int delivery_quantity;
 
-    public DeliveryDetail(Delivery delivery, int delivery_quantity) {
-        this.delivery = delivery;
+    public DeliveryNoteDetail(DeliveryNote deliveryNote, int delivery_quantity) {
+        this.deliveryNote = deliveryNote;
         this.delivery_quantity = delivery_quantity;
     }
 }
