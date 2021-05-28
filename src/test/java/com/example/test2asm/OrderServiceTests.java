@@ -6,6 +6,7 @@ import com.example.test2asm.entity.Product;
 import com.example.test2asm.repository.OrderDetailRepository;
 import com.example.test2asm.service.OrderService;
 import javassist.NotFoundException;
+import org.aspectj.weaver.ast.Or;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,7 +34,7 @@ public class OrderServiceTests {
     public void findOrderTest() {
         OrderDetail orderDetail1;
         Mockito.when(repository.findById(1)).thenReturn(
-                Optional.of(orderDetail1 = new OrderDetail(new OOrder(), new Product(), 0))
+                Optional.of(orderDetail1 = new OrderDetail(new OOrder(), new Product(), 1))
         );
 
         orderDetail1.setDetail_id(1);
@@ -42,16 +43,20 @@ public class OrderServiceTests {
 
     @Test
     public void findAllOrderTest() {
-        Mockito.when(repository.findAll()).thenReturn(Arrays.asList(
-                new OrderDetail(new OOrder(), new Product(), 11),
-                new OrderDetail(new OOrder(), new Product(), 22),
-                new OrderDetail(new OOrder(), new Product(), 33)
-        ));
+        OrderDetail order1 = new OrderDetail();
+        OrderDetail order2 = new OrderDetail();
+        OrderDetail order3 = new OrderDetail();
+        order1.setDetail_id(1);
+        order2.setDetail_id(2);
+        order3.setDetail_id(3);
+
+        Mockito.when(repository.findAll())
+                .thenReturn(Arrays.asList(order1, order2, order3));
         List<OrderDetail> orderDetails = service.getOrders();
 
-        assertEquals(11, orderDetails.get(0).getDetail_quantity());
-        assertEquals(22, orderDetails.get(1).getDetail_quantity());
-        assertEquals(33, orderDetails.get(2).getDetail_quantity());
+        assertEquals(1, orderDetails.get(0).getDetail_id());
+        assertEquals(2, orderDetails.get(1).getDetail_id());
+        assertEquals(3, orderDetails.get(2).getDetail_id());
     }
 
     @Test

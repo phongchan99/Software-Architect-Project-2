@@ -1,10 +1,8 @@
 package com.example.test2asm;
 
-import com.example.test2asm.controller.OrderController;
-import com.example.test2asm.entity.OOrder;
-import com.example.test2asm.entity.OrderDetail;
-import com.example.test2asm.entity.Product;
-import com.example.test2asm.service.OrderService;
+import com.example.test2asm.controller.DeliveryController;
+import com.example.test2asm.entity.DeliveryDetail;
+import com.example.test2asm.service.DeliveryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,31 +20,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(OrderController.class)
-public class OrderControllerTests {
+@WebMvcTest(DeliveryController.class)
+public class DeliveryControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private OrderService service;
+    private DeliveryService service;
 
     @Test
-    public void findAllOrders() throws Exception {
-        when(service.getOrders()).thenReturn(Arrays.asList(
-                new OrderDetail(), new OrderDetail(), new OrderDetail()));
+    public void findAllDelivery() throws Exception {
+        when(service.getDeliveries()).thenReturn(Arrays.asList(
+                new DeliveryDetail(), new DeliveryDetail(), new DeliveryDetail()));
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/orders")
+                MockMvcRequestBuilders.get("/deliveries")
         ).andExpect(status().isOk())
                 .andExpect(content().json("[{}, {}, {}]"));
     }
 
     @Test
     public void findAllEmpty() throws Exception {
-        when(service.getOrders()).thenReturn(Collections.emptyList());
+        when(service.getDeliveries()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/orders"))
+                MockMvcRequestBuilders.get("/deliveries"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }
