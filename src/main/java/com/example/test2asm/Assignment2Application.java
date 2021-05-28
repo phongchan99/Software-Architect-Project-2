@@ -125,9 +125,9 @@ public class Assignment2Application {
 		//</editor-fold>
 
 		//<editor-fold desc="INVOICE DETAIL">
-        SaleInvoiceDetail saleInvoiceDetail1 = new SaleInvoiceDetail(saleInvoice1, phone, customer1, 5, 0);
-        SaleInvoiceDetail saleInvoiceDetail2 = new SaleInvoiceDetail(saleInvoice2, laptop, customer2, 3, 0);
-        SaleInvoiceDetail saleInvoiceDetail3 = new SaleInvoiceDetail(saleInvoice3, bike, customer3, 2, 0);
+        SaleInvoiceDetail saleInvoiceDetail1 = new SaleInvoiceDetail(saleInvoice1, phone, customer1, 5);
+        SaleInvoiceDetail saleInvoiceDetail2 = new SaleInvoiceDetail(saleInvoice2, laptop, customer2, 3);
+        SaleInvoiceDetail saleInvoiceDetail3 = new SaleInvoiceDetail(saleInvoice3, bike, customer3, 2);
         List<SaleInvoiceDetail> saleInvoiceDetails = Arrays.asList(saleInvoiceDetail1, saleInvoiceDetail2, saleInvoiceDetail3);
         invoiceDetailRepository.saveAll(saleInvoiceDetails);
 		//</editor-fold>

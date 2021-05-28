@@ -25,7 +25,7 @@ public class OrderDetail {
     private OOrder order;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "productId", referencedColumnName = "product_id")
+    @JoinColumn(name = "productName", referencedColumnName = "product_name")
     private Product product;
 
     @Column(name = "Quantity")
@@ -38,6 +38,7 @@ public class OrderDetail {
         this.order = order;
         this.product = product;
         this.quantity = quantity;
+        this.price = product.getProduct_price() * quantity;
     }
 
 }

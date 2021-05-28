@@ -24,13 +24,13 @@ public class SaleInvoiceDetail {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumns({
-            @JoinColumn(name = "productId", referencedColumnName = "product_id"),
+            @JoinColumn(name = "productName", referencedColumnName = "product_name"),
             @JoinColumn(name = "productPrice", referencedColumnName = "product_price")
     })
     private Product product;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "customer", referencedColumnName = "customer_id")
+    @JoinColumn(name = "customer", referencedColumnName = "name")
     private Customer customer;
 
     @Column(name = "Quantity")
@@ -39,7 +39,7 @@ public class SaleInvoiceDetail {
     @Column(name = "totalPrice")
     private float invoice_totalPrice;
 
-    public SaleInvoiceDetail(SaleInvoice saleInvoice, Product product, Customer customer, int invoice_quantity, float invoice_totalPrice) {
+    public SaleInvoiceDetail(SaleInvoice saleInvoice, Product product, Customer customer, int invoice_quantity) {
         this.saleInvoice = saleInvoice;
         this.product = product;
         this.customer = customer;

@@ -23,7 +23,7 @@ public class DeliveryNoteDetail {
     private DeliveryNote deliveryNote;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "productId", referencedColumnName = "product_id")
+    @JoinColumn(name = "product", referencedColumnName = "product_name")
     private Product product;
 
     @Column(name = "Quantity")
