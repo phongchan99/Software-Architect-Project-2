@@ -73,14 +73,14 @@ public class SaleInvoiceService implements Serializable {
     }
 
     public List<SaleInvoiceDetail> onDate(String date) {
-        List<SaleInvoiceDetail> filterd = new ArrayList<>();
+        List<SaleInvoiceDetail> filtered = new ArrayList<>();
         List<SaleInvoiceDetail> invoices = repository.findAll();
         for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
             if (saleInvoiceDetail.getSaleInvoice().getInvoice_date().equals(date)) {
-                filterd.add(saleInvoiceDetail);
+                filtered.add(saleInvoiceDetail);
             }
         }
-        return filterd;
+        return filtered;
     }
 
 

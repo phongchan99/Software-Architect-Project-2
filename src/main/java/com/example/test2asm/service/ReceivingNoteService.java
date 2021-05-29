@@ -69,4 +69,15 @@ public class ReceivingNoteService {
         return qualified;
     }
 
+    public List<ReceivingNoteDetail> onDate(String date) {
+        List<ReceivingNoteDetail> filtered = new ArrayList<>();
+        List<ReceivingNoteDetail> invoices = repository.findAll();
+        for (ReceivingNoteDetail receivingNoteDetail : invoices) {
+            if (receivingNoteDetail.getReceivingNote().getReceivingNote_date().equals(date)) {
+                filtered.add(receivingNoteDetail);
+            }
+        }
+        return filtered;
+    }
+
 }

@@ -70,4 +70,15 @@ public class DeliveryNoteService {
         }
         return qualified;
     }
+
+    public List<DeliveryNoteDetail> onDate(String date) {
+        List<DeliveryNoteDetail> filtered = new ArrayList<>();
+        List<DeliveryNoteDetail> invoices = repository.findAll();
+        for (DeliveryNoteDetail deliveryNoteDetail : invoices) {
+            if (deliveryNoteDetail.getDeliveryNote().getDeliveryNote_date().equals(date)) {
+                filtered.add(deliveryNoteDetail);
+            }
+        }
+        return filtered;
+    }
 }

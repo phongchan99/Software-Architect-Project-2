@@ -86,14 +86,16 @@ public class Assignment2Application {
 		//<editor-fold desc="RECEIVING">
         ReceivingNote note1 = new ReceivingNote("2021-05-20", staff3);
         ReceivingNote note2 = new ReceivingNote("2021-05-21", staff1);
-        List<ReceivingNote> receivingNotes = Arrays.asList(note1, note2);
+        ReceivingNote note3 = new ReceivingNote("2021-05-20", staff2);
+        List<ReceivingNote> receivingNotes = Arrays.asList(note1, note2,note3);
         receivingRepository.saveAll(receivingNotes);
 		//</editor-fold>
 
 		//<editor-fold desc="RECEIVING DETAIL">
         ReceivingNoteDetail receivingNoteDetail1 = new ReceivingNoteDetail(note1, detailNum2);
         ReceivingNoteDetail receivingNoteDetail2 = new ReceivingNoteDetail(note2, detailNum1);
-        List<ReceivingNoteDetail> receivingNoteDetails = Arrays.asList(receivingNoteDetail1, receivingNoteDetail2);
+        ReceivingNoteDetail receivingNoteDetail3 = new ReceivingNoteDetail(note3, detailNum3);
+        List<ReceivingNoteDetail> receivingNoteDetails = Arrays.asList(receivingNoteDetail1, receivingNoteDetail2, receivingNoteDetail3);
         receivingDetailRepository.saveAll(receivingNoteDetails);
 		//</editor-fold>
 

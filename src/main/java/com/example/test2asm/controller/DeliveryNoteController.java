@@ -57,4 +57,9 @@ public class DeliveryNoteController {
     public List<DeliveryNoteDetail> findInvoiceIn(@PathVariable String start, @PathVariable String end) throws ParseException {
         return service.filterByDate(start, end);
     }
+
+    @GetMapping("/deliveryOn/{date}")
+    public List<DeliveryNoteDetail> findInvoiceOn(@PathVariable String date) {
+        return service.onDate(date);
+    }
 }
