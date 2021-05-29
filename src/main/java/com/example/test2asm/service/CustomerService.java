@@ -1,6 +1,7 @@
 package com.example.test2asm.service;
 
 import com.example.test2asm.entity.Customer;
+import com.example.test2asm.entity.Staff;
 import com.example.test2asm.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,9 +25,13 @@ public class CustomerService {
         return repository.saveAll(customers);
     }
 
-//    public Customer getCustomerByName(String name) {
-//        return repository.findByName(name);
-//    }
+    public Page<Customer> findByName(String name, Pageable pageable){
+        return (Page<Customer>) repository.findByName("%"+name+"%", pageable);
+    }
+
+    public List<Customer> getCustomers() {
+        return repository.findAll();
+    }
 
     public Customer getCustomerByAddress(String address) {
         return repository.findByAddress(address);
@@ -40,8 +45,8 @@ public class CustomerService {
         return repository.findById(id).orElse(null);
     }
 
-    public List<Customer> getCustomers() {
-        return repository.findAll();
+    public Page<Customer> findAll(Pageable pageable){
+        return (Page<Customer>) repository.findAll(pageable);
     }
 
     public String deleteCustomer(int id) {
@@ -60,7 +65,5 @@ public class CustomerService {
         return repository.save(existCustomer);
     }
 
-    public Page<Customer> findByName(String name, Pageable pageable){
-        return (Page<Customer>) repository.findByName("%"+name+"%", pageable);
-    }
+
 }

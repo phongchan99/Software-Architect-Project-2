@@ -1,6 +1,7 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.Customer;
+import com.example.test2asm.entity.Staff;
 import com.example.test2asm.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -25,15 +26,17 @@ public class CustomerController {
         return service.saveCustomers(customers);
     }
 
-    @GetMapping("/customers")
-    public List<Customer> findAllCustomers() {
-        return service.getCustomers();
+    @GetMapping( "/customers/{pageSize},{pageNo}")
+    public List<Customer> findAll(@PathVariable int pageSize, @PathVariable int pageNo){
+        PageRequest pageable = PageRequest.of(pageNo,pageSize);
+        return this.service.findAll(pageable).getContent();
     }
 
-//    @GetMapping("/customerByName/{name}")
-//    public Customer findCustomerByName(@PathVariable String name) {
-//        return service.getCustomerByName(name);
-//    }
+    @GetMapping("/customerByName/{name}/{pageSize},{pageNo}")
+    public List<Customer> findCustomerByName(@PathVariable String name ,@PathVariable int pageNo,@PathVariable int pageSize){
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.service.findByName(name,(PageRequest) pageable).getContent();
+    }
 
     @GetMapping("/customerByAddress/{address}")
     public Customer findCustomerByAddress(@PathVariable String address) {
@@ -60,9 +63,5 @@ public class CustomerController {
         return service.deleteCustomer(id);
     }
 
-    @RequestMapping(path = "/customerByName", method = RequestMethod.GET)
-    public List<Customer> findCustomerByName(@RequestParam String name,@RequestParam int pageNo, @RequestParam  int pageSize){
-        Pageable pageable = PageRequest.of(pageNo,pageSize);
-        return this.service.findByName(name,(PageRequest) pageable).getContent();
-    }
+
 }

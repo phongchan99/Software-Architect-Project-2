@@ -11,15 +11,16 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff,Integer> {
-//    Staff findByName(String name);
 
-    @Query(value = "SELECT * FROM Staff WHERE name like :name order by name desc",
+    @Query(value = "SELECT * FROM Staff WHERE name like :name order by name asc",
             countQuery = "SELECT count(*) FROM Staff WHERE name like :name",
             nativeQuery = true)
     Page<Staff> findByName(@Param("name") String name, Pageable pageable);
 
-    @Query(value = "SELECT * FROM Staff order by name desc",
+    @Query(value = "SELECT * FROM Staff order by name asc",
             countQuery = "SELECT count(*) FROM Staff ",
             nativeQuery = true)
     Page<Staff> findAll(Pageable pageable);
+
+
 }

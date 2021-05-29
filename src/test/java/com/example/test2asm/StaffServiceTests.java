@@ -5,12 +5,9 @@ import com.example.test2asm.repository.StaffRepository;
 import com.example.test2asm.service.StaffService;
 import javassist.NotFoundException;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 
@@ -21,7 +18,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-//@RunWith(MockitoJUnitRunner.class)
 public class StaffServiceTests {
 
     @InjectMocks
