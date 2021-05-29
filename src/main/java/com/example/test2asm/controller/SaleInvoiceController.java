@@ -1,8 +1,10 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.SaleInvoiceDetail;
+import com.example.test2asm.entity.Staff;
 import com.example.test2asm.service.SaleInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -24,9 +26,15 @@ public class SaleInvoiceController {
         return service.saveInvoices(saleInvoiceDetails);
     }
 
-    @GetMapping("/invoices")
-    public List<SaleInvoiceDetail> findAllInvoices() {
-        return service.getInvoices();
+//    @GetMapping("/invoices")
+//    public List<SaleInvoiceDetail> findAllInvoices() {
+//        return service.getInvoices();
+//    }
+
+    @GetMapping( "/invoices/{pageSize},{pageNo}")
+    public List<SaleInvoiceDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
+        PageRequest pageable = PageRequest.of(pageNo,pageSize);
+        return this.service.findAll(pageable).getContent();
     }
 
     @GetMapping("/invoiceById/{id}")

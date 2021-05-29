@@ -1,8 +1,11 @@
 package com.example.test2asm.service;
 
 import com.example.test2asm.entity.OrderDetail;
+import com.example.test2asm.entity.Staff;
 import com.example.test2asm.repository.OrderDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,9 +28,15 @@ public class OrderService {
         return repository.findById(id).orElse(null);
     }
 
+    //For testing
     public List<OrderDetail> getOrders() {
         return repository.findAll();
     }
+
+    public Page<OrderDetail> findAll(Pageable pageable){
+        return (Page<OrderDetail>) repository.findAll(pageable);
+    }
+
 
     public String deleteOrder(int id) {
         repository.deleteById(id);

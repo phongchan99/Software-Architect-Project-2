@@ -1,8 +1,11 @@
 package com.example.test2asm.service;
 
 import com.example.test2asm.entity.SaleInvoiceDetail;
+import com.example.test2asm.entity.Staff;
 import com.example.test2asm.repository.InvoiceDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +30,13 @@ public class SaleInvoiceService implements Serializable {
         return repository.saveAll(saleInvoiceDetails);
     }
 
+    //For testing
     public List<SaleInvoiceDetail> getInvoices() {
         return repository.findAll();
+    }
+
+    public Page<SaleInvoiceDetail> findAll(Pageable pageable){
+        return (Page<SaleInvoiceDetail>) repository.findAll(pageable);
     }
 
     public SaleInvoiceDetail getInvoiceById(int id) {

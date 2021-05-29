@@ -1,8 +1,10 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.OrderDetail;
+import com.example.test2asm.entity.Staff;
 import com.example.test2asm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +24,16 @@ public class OrderController {
         return service.saveOrders(orderDetails);
     }
 
-    @GetMapping("/orders")
-    public List<OrderDetail> findAllOrders() {
-        return service.getOrders();
+//    //For testing
+//    @GetMapping("/orders")
+//    public List<OrderDetail> findAllOrders() {
+//        return service.getOrders();
+//    }
+
+    @GetMapping( "/orders/{pageSize},{pageNo}")
+    public List<OrderDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
+        PageRequest pageable = PageRequest.of(pageNo,pageSize);
+        return this.service.findAll(pageable).getContent();
     }
 
     @GetMapping("/orderById/{id}")

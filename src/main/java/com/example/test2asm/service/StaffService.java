@@ -35,6 +35,7 @@ public class StaffService {
         return (Page<Staff>) repository.findAll(pageable);
     }
 
+    //For testing
     public List<Staff> getStaffs() {
         return repository.findAll();
     }
