@@ -60,7 +60,7 @@ public class CustomerController {
         return service.deleteCustomer(id);
     }
 
-    @RequestMapping(path = "/customerByName/search", method = RequestMethod.GET)
+    @RequestMapping(path = "/customerByName", method = RequestMethod.GET)
     public List<Customer> findCustomerByName(@RequestParam String name,@RequestParam int pageNo, @RequestParam  int pageSize){
         Pageable pageable = PageRequest.of(pageNo,pageSize);
         return this.service.findByName(name,(PageRequest) pageable).getContent();
