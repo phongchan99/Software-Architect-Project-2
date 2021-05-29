@@ -1,12 +1,14 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.DeliveryNoteDetail;
+import com.example.test2asm.entity.ReceivingNoteDetail;
 import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.service.DeliveryNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -49,5 +51,10 @@ public class DeliveryNoteController {
     @DeleteMapping("/deleteDelivery/{id}")
     public String deleteDelivery(@PathVariable int id) {
         return service.deleteDelivery(id);
+    }
+
+    @GetMapping("/deliveryIn/{start},{end}")
+    public List<DeliveryNoteDetail> findInvoiceIn(@PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.filterByDate(start, end);
     }
 }

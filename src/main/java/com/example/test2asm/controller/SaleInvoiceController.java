@@ -52,7 +52,7 @@ public class SaleInvoiceController {
         return service.deleteInvoice(id);
     }
 
-    @GetMapping("/invoiceIn/{start}/{end}")
+    @GetMapping("/invoiceIn/{start},{end}")
     public List<SaleInvoiceDetail> findInvoiceIn(@PathVariable String start, @PathVariable String end) throws ParseException {
         return service.filterByDate(start, end);
     }

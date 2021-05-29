@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -23,11 +24,6 @@ public class ReceivingNoteController {
     public List<ReceivingNoteDetail> addReceivings(@RequestBody List<ReceivingNoteDetail> receivingNoteDetails) {
         return service.saveReceivings(receivingNoteDetails);
     }
-
-//    @GetMapping("/receivings")
-//    public List<ReceivingNoteDetail> findReceivings() {
-//        return service.getReceivings();
-//    }
 
     @GetMapping( "/receivings/{pageSize},{pageNo}")
     public List<ReceivingNoteDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
@@ -48,5 +44,10 @@ public class ReceivingNoteController {
     @DeleteMapping("/deleteReceiving/{id}")
     public String deleteReceiving(@PathVariable int id) {
         return service.deleteReceiving(id);
+    }
+
+    @GetMapping("/receivingIn/{start},{end}")
+    public List<ReceivingNoteDetail> findInvoiceIn(@PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.filterByDate(start, end);
     }
 }

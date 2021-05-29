@@ -67,7 +67,6 @@ public class SaleInvoiceService implements Serializable {
         for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
             Date mid = format.parse(saleInvoiceDetail.getSaleInvoice().getInvoice_date());
             if (startDate.before(mid) && endDate.after(mid)) {
-                System.out.println(saleInvoiceDetail.getInvoiceDetail_id());
                 qualified.add(saleInvoiceDetail);
             }
         }

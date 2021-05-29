@@ -8,6 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,9 +50,23 @@ public class ReceivingNoteService {
     public ReceivingNoteDetail updateReceiving(ReceivingNoteDetail receivingNoteDetail) {
         ReceivingNoteDetail existReceiving = repository.findById(receivingNoteDetail.getReceivingDetail_id()).orElse(null);
         existReceiving.setReceivingNote(receivingNoteDetail.getReceivingNote());
-//        existReceiving.setProduct(receivingDetail.getProduct());
-//        existReceiving.setReceivingdetail_quantity(receivingDetail.getReceivingdetail_quantity());
         return repository.save(existReceiving);
+    }
+
+    public List<ReceivingNoteDetail> filterByDate(String start, String end) throws ParseException {
+        List<ReceivingNoteDetail> qualified = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<ReceivingNoteDetail> invoices = repository.findAll();
+        for (ReceivingNoteDetail receivingNoteDetail : invoices) {
+            Date mid = format.parse(receivingNoteDetail.getReceivingNote().getReceivingNote_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                qualified.add(receivingNoteDetail);
+            }
+        }
+        return qualified;
     }
 
 }
