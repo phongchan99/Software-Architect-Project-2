@@ -1,7 +1,6 @@
 package com.example.test2asm.service;
 
 import com.example.test2asm.entity.SaleInvoiceDetail;
-import com.example.test2asm.entity.Staff;
 import com.example.test2asm.repository.InvoiceDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,6 +70,17 @@ public class SaleInvoiceService implements Serializable {
             }
         }
         return qualified;
+    }
+
+    public List<SaleInvoiceDetail> onDate(String date) {
+        List<SaleInvoiceDetail> filterd = new ArrayList<>();
+        List<SaleInvoiceDetail> invoices = repository.findAll();
+        for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
+            if (saleInvoiceDetail.getSaleInvoice().getInvoice_date().equals(date)) {
+                filterd.add(saleInvoiceDetail);
+            }
+        }
+        return filterd;
     }
 
 

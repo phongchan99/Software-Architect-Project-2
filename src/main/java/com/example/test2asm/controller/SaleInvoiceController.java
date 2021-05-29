@@ -31,9 +31,9 @@ public class SaleInvoiceController {
 //        return service.getInvoices();
 //    }
 
-    @GetMapping( "/invoices/{pageSize},{pageNo}")
-    public List<SaleInvoiceDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
-        PageRequest pageable = PageRequest.of(pageNo,pageSize);
+    @GetMapping("/invoices/{pageSize},{pageNo}")
+    public List<SaleInvoiceDetail> findAll(@PathVariable int pageSize, @PathVariable int pageNo) {
+        PageRequest pageable = PageRequest.of(pageNo, pageSize);
         return this.service.findAll(pageable).getContent();
     }
 
@@ -55,5 +55,10 @@ public class SaleInvoiceController {
     @GetMapping("/invoiceIn/{start},{end}")
     public List<SaleInvoiceDetail> findInvoiceIn(@PathVariable String start, @PathVariable String end) throws ParseException {
         return service.filterByDate(start, end);
+    }
+
+    @GetMapping("/invoiceOn/{date}")
+    public List<SaleInvoiceDetail> findInvoiceOn(@PathVariable String date) {
+        return service.onDate(date);
     }
 }
