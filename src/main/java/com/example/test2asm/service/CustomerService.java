@@ -3,7 +3,10 @@ package com.example.test2asm.service;
 import com.example.test2asm.entity.Customer;
 import com.example.test2asm.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -21,9 +24,9 @@ public class CustomerService {
         return repository.saveAll(customers);
     }
 
-    public Customer getCustomerByName(String name) {
-        return repository.findByName(name);
-    }
+//    public Customer getCustomerByName(String name) {
+//        return repository.findByName(name);
+//    }
 
     public Customer getCustomerByAddress(String address) {
         return repository.findByAddress(address);
@@ -55,5 +58,9 @@ public class CustomerService {
         existCustomer.setCustomer_email(customer.getCustomer_email());
         existCustomer.setCustomer_contactPerson(customer.getCustomer_contactPerson());
         return repository.save(existCustomer);
+    }
+
+    public Page<Customer> findByName(String name, Pageable pageable){
+        return (Page<Customer>) repository.findByName("%"+name+"%", pageable);
     }
 }

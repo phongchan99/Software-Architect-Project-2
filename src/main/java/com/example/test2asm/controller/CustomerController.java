@@ -3,6 +3,8 @@ package com.example.test2asm.controller;
 import com.example.test2asm.entity.Customer;
 import com.example.test2asm.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,10 +30,10 @@ public class CustomerController {
         return service.getCustomers();
     }
 
-    @GetMapping("/customerByName/{name}")
-    public Customer findCustomerByName(@PathVariable String name) {
-        return service.getCustomerByName(name);
-    }
+//    @GetMapping("/customerByName/{name}")
+//    public Customer findCustomerByName(@PathVariable String name) {
+//        return service.getCustomerByName(name);
+//    }
 
     @GetMapping("/customerByAddress/{address}")
     public Customer findCustomerByAddress(@PathVariable String address) {
@@ -56,5 +58,11 @@ public class CustomerController {
     @DeleteMapping("/deleteCustomer/{id}")
     public String deleteCustomer(@PathVariable int id) {
         return service.deleteCustomer(id);
+    }
+
+    @RequestMapping(path = "/customerByName/search", method = RequestMethod.GET)
+    public List<Customer> findCustomerByName(@RequestParam String name,@RequestParam int pageNo, @RequestParam  int pageSize){
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        return this.service.findByName(name,(PageRequest) pageable).getContent();
     }
 }

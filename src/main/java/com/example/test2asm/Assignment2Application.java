@@ -2,20 +2,25 @@ package com.example.test2asm;
 
 import com.example.test2asm.entity.*;
 import com.example.test2asm.repository.*;
+import com.example.test2asm.service.SaleInvoiceService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
 public class Assignment2Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         ConfigurableApplicationContext configurableApplicationContext =
                 SpringApplication.run(Assignment2Application.class, args);
 
+        SaleInvoiceService service = new SaleInvoiceService();
         //<editor-fold desc="REPOSITORY">
         OrderRepository orderRepository = configurableApplicationContext.getBean(OrderRepository.class);
         ProductRepository productRepository = configurableApplicationContext.getBean(ProductRepository.class);
@@ -117,10 +122,11 @@ public class Assignment2Application {
 		//</editor-fold>
 
 		//<editor-fold desc="INVOICE">
-        SaleInvoice saleInvoice1 = new SaleInvoice("2021-05-28", staff1);
-        SaleInvoice saleInvoice2 = new SaleInvoice("2021-05-29", staff2);
-        SaleInvoice saleInvoice3 = new SaleInvoice("2021-05-30", staff3);
-        List<SaleInvoice> saleInvoices = Arrays.asList(saleInvoice1, saleInvoice2, saleInvoice3);
+        SaleInvoice saleInvoice1 = new SaleInvoice("2021-05-27", staff1);
+        SaleInvoice saleInvoice2 = new SaleInvoice("2021-05-28", staff2);
+        SaleInvoice saleInvoice3 = new SaleInvoice("2021-05-29", staff3);
+        SaleInvoice saleInvoice4 = new SaleInvoice("2021-05-30", staff3);
+        List<SaleInvoice> saleInvoices = Arrays.asList(saleInvoice1, saleInvoice2, saleInvoice3,saleInvoice4);
         invoiceRepository.saveAll(saleInvoices);
 		//</editor-fold>
 
@@ -128,9 +134,12 @@ public class Assignment2Application {
         SaleInvoiceDetail saleInvoiceDetail1 = new SaleInvoiceDetail(saleInvoice1, phone, customer1, 5);
         SaleInvoiceDetail saleInvoiceDetail2 = new SaleInvoiceDetail(saleInvoice2, laptop, customer2, 3);
         SaleInvoiceDetail saleInvoiceDetail3 = new SaleInvoiceDetail(saleInvoice3, bike, customer3, 2);
-        List<SaleInvoiceDetail> saleInvoiceDetails = Arrays.asList(saleInvoiceDetail1, saleInvoiceDetail2, saleInvoiceDetail3);
+        SaleInvoiceDetail saleInvoiceDetail4 = new SaleInvoiceDetail(saleInvoice4, phone, customer2, 1);
+        List<SaleInvoiceDetail> saleInvoiceDetails = Arrays.asList(saleInvoiceDetail1, saleInvoiceDetail2, saleInvoiceDetail3, saleInvoiceDetail4);
         invoiceDetailRepository.saveAll(saleInvoiceDetails);
 		//</editor-fold>
+
+
     }
 
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "InvoiceDetail")
 
-public class SaleInvoiceDetail {
+public class SaleInvoiceDetail implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,4 +47,5 @@ public class SaleInvoiceDetail {
         this.invoice_quantity = invoice_quantity;
         this.invoice_totalPrice = product.getProduct_price()*invoice_quantity;
     }
+
 }

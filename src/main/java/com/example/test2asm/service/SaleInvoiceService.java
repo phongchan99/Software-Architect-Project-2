@@ -3,12 +3,18 @@ package com.example.test2asm.service;
 import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.repository.InvoiceDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+@Component
 @Service
-public class SaleInvoiceService {
+public class SaleInvoiceService implements Serializable {
 
     @Autowired
     private InvoiceDetailRepository repository;
@@ -42,4 +48,23 @@ public class SaleInvoiceService {
         existInvoice.setInvoice_totalPrice(saleInvoiceDetail.getInvoice_totalPrice());
         return repository.save(existInvoice);
     }
+
+    public List<SaleInvoiceDetail> filterByDate(String start, String end) throws ParseException {
+        List<SaleInvoiceDetail> qualified = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<SaleInvoiceDetail> invoices = repository.findAll();
+        for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
+            Date mid = format.parse(saleInvoiceDetail.getSaleInvoice().getInvoice_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                System.out.println(saleInvoiceDetail.getInvoiceDetail_id());
+                qualified.add(saleInvoiceDetail);
+            }
+        }
+        return qualified;
+    }
+
+
 }

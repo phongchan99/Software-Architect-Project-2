@@ -5,6 +5,7 @@ import com.example.test2asm.service.SaleInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -41,5 +42,10 @@ public class SaleInvoiceController {
     @DeleteMapping("/deleteInvoice/{id}")
     public String deleteInvoice(@PathVariable int id) {
         return service.deleteInvoice(id);
+    }
+
+    @GetMapping("/invoiceIn/{start}/{end}")
+    public List<SaleInvoiceDetail> findInvoiceIn(@PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.filterByDate(start, end);
     }
 }

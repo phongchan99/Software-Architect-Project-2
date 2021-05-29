@@ -1,10 +1,18 @@
 package com.example.test2asm.entity;
 
+import com.example.test2asm.service.SaleInvoiceService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -12,7 +20,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Invoice")
 
-public class SaleInvoice {
+public class SaleInvoice implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +35,6 @@ public class SaleInvoice {
         this.invoice_date = invoice_date;
         this.staff = staff;
     }
+
+
 }
