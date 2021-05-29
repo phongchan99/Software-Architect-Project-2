@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail,Integer> {
 
-//    List<OrderDetail> findAll();
 
     @Query(value = "SELECT * FROM orderdetail ",
             countQuery = "SELECT count(*) FROM orderdetail ",

@@ -1,8 +1,11 @@
 package com.example.test2asm.service;
 
 import com.example.test2asm.entity.ReceivingNoteDetail;
+import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.repository.ReceivingDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +28,13 @@ public class ReceivingNoteService {
         return repository.findById(id).orElse(null);
     }
 
+    //For testing
     public List<ReceivingNoteDetail> getReceivings() {
         return repository.findAll();
+    }
+
+    public Page<ReceivingNoteDetail> findAll(Pageable pageable){
+        return (Page<ReceivingNoteDetail>) repository.findAll(pageable);
     }
 
     public String deleteReceiving(int id) {

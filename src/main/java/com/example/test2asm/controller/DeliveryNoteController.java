@@ -1,8 +1,10 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.DeliveryNoteDetail;
+import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.service.DeliveryNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +25,15 @@ public class DeliveryNoteController {
         return service.saveDeliveries(deliveryNoteDetails);
     }
 
-    @GetMapping("/deliveries")
-    public List<DeliveryNoteDetail> findDeliveries() {
-        return service.getDeliveries();
+//    @GetMapping("/deliveries")
+//    public List<DeliveryNoteDetail> findDeliveries() {
+//        return service.getDeliveries();
+//    }
+
+    @GetMapping( "/deliveries/{pageSize},{pageNo}")
+    public List<DeliveryNoteDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
+        PageRequest pageable = PageRequest.of(pageNo,pageSize);
+        return this.service.findAll(pageable).getContent();
     }
 
     @GetMapping("/deliveryById/{id}")
