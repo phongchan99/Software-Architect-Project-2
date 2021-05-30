@@ -31,8 +31,8 @@ public class StaffService {
         return (Page<Staff>) repository.findByName("%"+name+"%", pageable);
     }
 
-    public Page<Staff> findAll(Pageable pageable){
-        return (Page<Staff>) repository.findAll(pageable);
+    public Page<Staff> findAllStaff(Pageable pageable){
+        return (Page<Staff>) repository.findAllStaff(pageable);
     }
 
     //For testing

@@ -33,8 +33,8 @@ public class OrderService {
         return repository.findAll();
     }
 
-    public Page<OrderDetail> findAll(Pageable pageable){
-        return (Page<OrderDetail>) repository.findAll(pageable);
+    public Page<OrderDetail> findAllOrder(Pageable pageable){
+        return (Page<OrderDetail>) repository.findAllOrder(pageable);
     }
 
 

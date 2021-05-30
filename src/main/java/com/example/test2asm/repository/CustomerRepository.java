@@ -23,5 +23,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value = "SELECT * FROM Customer order by name asc",
             countQuery = "SELECT count(*) FROM Customer ",
             nativeQuery = true)
-    Page<Customer> findAll(Pageable pageable);
+    Page<Customer> findAllCustomer(Pageable pageable);
 }

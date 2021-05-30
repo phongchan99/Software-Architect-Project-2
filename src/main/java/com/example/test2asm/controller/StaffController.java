@@ -25,9 +25,15 @@ public class StaffController {
     }
 
     @GetMapping( "/staffs/{pageSize},{pageNo}")
-    public List<Staff> findAll(@PathVariable int pageSize,@PathVariable  int pageNo){
+    public List<Staff> findAllStaff(@PathVariable int pageSize,@PathVariable  int pageNo){
         PageRequest pageable = PageRequest.of(pageNo,pageSize);
-        return this.service.findAll(pageable).getContent();
+        return this.service.findAllStaff(pageable).getContent();
+    }
+
+    //For testing
+    @GetMapping("/staffs")
+    public List<Staff> findStaffs() {
+        return service.getStaffs();
     }
 
     @GetMapping("/staffById/{id}")

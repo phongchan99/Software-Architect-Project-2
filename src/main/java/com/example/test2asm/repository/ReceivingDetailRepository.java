@@ -11,5 +11,5 @@ public interface ReceivingDetailRepository extends JpaRepository<ReceivingNoteDe
     @Query(value = "SELECT * FROM receivingdetail ",
             countQuery = "SELECT count(*) FROM receivingdetail ",
             nativeQuery = true)
-    Page<ReceivingNoteDetail> findAll(Pageable pageable);
+    Page<ReceivingNoteDetail> findAllReceiving(Pageable pageable);
 }

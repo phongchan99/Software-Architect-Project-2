@@ -20,7 +20,7 @@ public interface StaffRepository extends JpaRepository<Staff,Integer> {
     @Query(value = "SELECT * FROM Staff order by name asc",
             countQuery = "SELECT count(*) FROM Staff ",
             nativeQuery = true)
-    Page<Staff> findAll(Pageable pageable);
+    Page<Staff> findAllStaff(Pageable pageable);
 
 
 }

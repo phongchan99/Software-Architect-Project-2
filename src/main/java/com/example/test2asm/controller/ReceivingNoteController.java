@@ -26,9 +26,15 @@ public class ReceivingNoteController {
     }
 
     @GetMapping( "/receivings/{pageSize},{pageNo}")
-    public List<ReceivingNoteDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
+    public List<ReceivingNoteDetail> findAllReceiving(@PathVariable int pageSize, @PathVariable  int pageNo){
         PageRequest pageable = PageRequest.of(pageNo,pageSize);
-        return this.service.findAll(pageable).getContent();
+        return this.service.findAllReceiving(pageable).getContent();
+    }
+
+    //For testing
+    @GetMapping("/receivings")
+    public List<ReceivingNoteDetail> findReceivings() {
+        return service.getReceivings();
     }
 
     @GetMapping("/receivingById/{id}")

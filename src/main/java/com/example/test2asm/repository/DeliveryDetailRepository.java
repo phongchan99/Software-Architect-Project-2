@@ -11,5 +11,5 @@ public interface DeliveryDetailRepository extends JpaRepository<DeliveryNoteDeta
     @Query(value = "SELECT * FROM deliverydetail ",
             countQuery = "SELECT count(*) FROM deliverydetail ",
             nativeQuery = true)
-    Page<DeliveryNoteDetail> findAll(Pageable pageable);
+    Page<DeliveryNoteDetail> findAllDelivery(Pageable pageable);
 }

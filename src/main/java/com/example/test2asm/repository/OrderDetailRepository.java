@@ -13,5 +13,5 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail,Integer
     @Query(value = "SELECT * FROM orderdetail ",
             countQuery = "SELECT count(*) FROM orderdetail ",
             nativeQuery = true)
-    Page<OrderDetail> findAll(Pageable pageable);
+    Page<OrderDetail> findAllOrder(Pageable pageable);
 }

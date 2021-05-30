@@ -15,5 +15,5 @@ public interface InvoiceDetailRepository extends JpaRepository<SaleInvoiceDetail
     @Query(value = "SELECT * FROM invoicedetail ",
             countQuery = "SELECT count(*) FROM invoicedetail ",
             nativeQuery = true)
-    Page<SaleInvoiceDetail> findAll(Pageable pageable);
+    Page<SaleInvoiceDetail> findAllInvoice(Pageable pageable);
 }

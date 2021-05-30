@@ -45,8 +45,8 @@ public class CustomerService {
         return repository.findById(id).orElse(null);
     }
 
-    public Page<Customer> findAll(Pageable pageable){
-        return (Page<Customer>) repository.findAll(pageable);
+    public Page<Customer> findAllCustomer(Pageable pageable){
+        return (Page<Customer>) repository.findAllCustomer(pageable);
     }
 
     public String deleteCustomer(int id) {

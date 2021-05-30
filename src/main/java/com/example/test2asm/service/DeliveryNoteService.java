@@ -39,8 +39,8 @@ public class DeliveryNoteService {
         return repository.findAll();
     }
 
-    public Page<DeliveryNoteDetail> findAll(Pageable pageable){
-        return (Page<DeliveryNoteDetail>) repository.findAll(pageable);
+    public Page<DeliveryNoteDetail> findAllDelivery(Pageable pageable){
+        return (Page<DeliveryNoteDetail>) repository.findAllDelivery(pageable);
     }
 
     public String deleteDelivery(int id) {

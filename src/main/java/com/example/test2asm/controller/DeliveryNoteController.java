@@ -33,14 +33,19 @@ public class DeliveryNoteController {
 //    }
 
     @GetMapping( "/deliveries/{pageSize},{pageNo}")
-    public List<DeliveryNoteDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
+    public List<DeliveryNoteDetail> findAllDelivery(@PathVariable int pageSize, @PathVariable  int pageNo){
         PageRequest pageable = PageRequest.of(pageNo,pageSize);
-        return this.service.findAll(pageable).getContent();
+        return this.service.findAllDelivery(pageable).getContent();
     }
 
     @GetMapping("/deliveryById/{id}")
     public DeliveryNoteDetail findDeliveryById(@PathVariable int id) {
         return service.getDeliveryById(id);
+    }
+
+    @GetMapping("/deliveries")
+    public List<DeliveryNoteDetail> findAll() {
+        return service.getDeliveries();
     }
 
     @PutMapping("/updateDelivery")

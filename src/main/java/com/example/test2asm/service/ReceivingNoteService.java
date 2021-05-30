@@ -38,8 +38,8 @@ public class ReceivingNoteService {
         return repository.findAll();
     }
 
-    public Page<ReceivingNoteDetail> findAll(Pageable pageable){
-        return (Page<ReceivingNoteDetail>) repository.findAll(pageable);
+    public Page<ReceivingNoteDetail> findAllReceiving(Pageable pageable){
+        return (Page<ReceivingNoteDetail>) repository.findAllReceiving(pageable);
     }
 
     public String deleteReceiving(int id) {

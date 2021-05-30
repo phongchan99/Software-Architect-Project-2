@@ -34,8 +34,8 @@ public class SaleInvoiceService implements Serializable {
         return repository.findAll();
     }
 
-    public Page<SaleInvoiceDetail> findAll(Pageable pageable){
-        return (Page<SaleInvoiceDetail>) repository.findAll(pageable);
+    public Page<SaleInvoiceDetail> findAllInvoice(Pageable pageable){
+        return (Page<SaleInvoiceDetail>) repository.findAllInvoice(pageable);
     }
 
     public SaleInvoiceDetail getInvoiceById(int id) {

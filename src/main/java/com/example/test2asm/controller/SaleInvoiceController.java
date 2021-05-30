@@ -27,15 +27,16 @@ public class SaleInvoiceController {
         return service.saveInvoices(saleInvoiceDetails);
     }
 
-//    @GetMapping("/invoices")
-//    public List<SaleInvoiceDetail> findAllInvoices() {
-//        return service.getInvoices();
-//    }
+    //For testing
+    @GetMapping("/invoices")
+    public List<SaleInvoiceDetail> findAllInvoices() {
+        return service.getInvoices();
+    }
 
     @GetMapping("/invoices/{pageSize},{pageNo}")
-    public List<SaleInvoiceDetail> findAll(@PathVariable int pageSize, @PathVariable int pageNo) {
+    public List<SaleInvoiceDetail> findAllInvoice(@PathVariable int pageSize, @PathVariable int pageNo) {
         PageRequest pageable = PageRequest.of(pageNo, pageSize);
-        return this.service.findAll(pageable).getContent();
+        return this.service.findAllInvoice(pageable).getContent();
     }
 
     @GetMapping("/invoiceById/{id}")

@@ -27,9 +27,14 @@ public class CustomerController {
     }
 
     @GetMapping( "/customers/{pageSize},{pageNo}")
-    public List<Customer> findAll(@PathVariable int pageSize, @PathVariable int pageNo){
+    public List<Customer> findAllCustomer(@PathVariable int pageSize, @PathVariable int pageNo){
         PageRequest pageable = PageRequest.of(pageNo,pageSize);
-        return this.service.findAll(pageable).getContent();
+        return this.service.findAllCustomer(pageable).getContent();
+    }
+
+    @GetMapping("/customers")
+    public List<Customer> getCustomers() {
+        return service.getCustomers();
     }
 
     @GetMapping("/customerByName/{name}/{pageSize},{pageNo}")

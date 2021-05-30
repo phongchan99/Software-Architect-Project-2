@@ -24,16 +24,16 @@ public class OrderController {
         return service.saveOrders(orderDetails);
     }
 
-//    //For testing
-//    @GetMapping("/orders")
-//    public List<OrderDetail> findAllOrders() {
-//        return service.getOrders();
-//    }
+    //For testing
+    @GetMapping("/orders")
+    public List<OrderDetail> findAllOrders() {
+        return service.getOrders();
+    }
 
     @GetMapping( "/orders/{pageSize},{pageNo}")
-    public List<OrderDetail> findAll(@PathVariable int pageSize, @PathVariable  int pageNo){
+    public List<OrderDetail> findAllOrder(@PathVariable int pageSize, @PathVariable  int pageNo){
         PageRequest pageable = PageRequest.of(pageNo,pageSize);
-        return this.service.findAll(pageable).getContent();
+        return this.service.findAllOrder(pageable).getContent();
     }
 
     @GetMapping("/orderById/{id}")
