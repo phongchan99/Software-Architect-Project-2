@@ -83,5 +83,76 @@ public class SaleInvoiceService implements Serializable {
         return filtered;
     }
 
+    public List<SaleInvoiceDetail> customerIn(String name, String start, String end) throws ParseException {
+        List<SaleInvoiceDetail> customerQualified = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<SaleInvoiceDetail> invoices = repository.findAll();
+        for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
+            Date mid = format.parse(saleInvoiceDetail.getSaleInvoice().getInvoice_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (saleInvoiceDetail.getCustomer().getName().toLowerCase().equals(name.toLowerCase())) {
+                    customerQualified.add(saleInvoiceDetail);
+                }
+            }
+        }
+        return customerQualified;
+    }
+
+    public String saleByCustomerIn(String name, String start, String end) throws ParseException {
+        int totalSale = 0;
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<SaleInvoiceDetail> invoices = repository.findAll();
+        for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
+            Date mid = format.parse(saleInvoiceDetail.getSaleInvoice().getInvoice_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (saleInvoiceDetail.getCustomer().getName().toLowerCase().equals(name.toLowerCase())) {
+                    totalSale += saleInvoiceDetail.getInvoice_totalPrice();
+                }
+            }
+        }
+        return "Revenue by customer " + name + " from " + start + " to " + end + " is $" + totalSale ;
+    }
+
+    public String saleByStaffIn(String name, String start, String end) throws ParseException {
+        int totalSale = 0;
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<SaleInvoiceDetail> invoices = repository.findAll();
+        for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
+            Date mid = format.parse(saleInvoiceDetail.getSaleInvoice().getInvoice_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (saleInvoiceDetail.getSaleInvoice().getStaff().getName().toLowerCase().equals(name.toLowerCase())) {
+                    totalSale += saleInvoiceDetail.getInvoice_totalPrice();
+                }
+            }
+        }
+        return "Revenue by staff " + name + " from " + start + " to " + end + " is $" + totalSale ;
+    }
+
+    public List<SaleInvoiceDetail> staffIn(String name, String start, String end) throws ParseException {
+        List<SaleInvoiceDetail> staffQualified = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<SaleInvoiceDetail> invoices = repository.findAll();
+        for (SaleInvoiceDetail saleInvoiceDetail : invoices) {
+            Date mid = format.parse(saleInvoiceDetail.getSaleInvoice().getInvoice_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (saleInvoiceDetail.getSaleInvoice().getStaff().getName().toLowerCase().equals(name.toLowerCase())) {
+                    staffQualified.add(saleInvoiceDetail);
+                }
+            }
+        }
+        return staffQualified;
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.test2asm.controller;
 
+import com.example.test2asm.entity.SaleInvoice;
 import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.entity.Staff;
 import com.example.test2asm.service.SaleInvoiceService;
@@ -60,5 +61,25 @@ public class SaleInvoiceController {
     @GetMapping("/invoiceOn/{date}")
     public List<SaleInvoiceDetail> findInvoiceOn(@PathVariable String date) {
         return service.onDate(date);
+    }
+
+    @GetMapping("/invoiceByCustomerIn/{name},{start},{end}")
+    public List<SaleInvoiceDetail> findInvoiceByCustomerIn(@PathVariable String name, @PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.customerIn(name, start, end);
+    }
+
+    @GetMapping("/invoiceByStaffIn/{name},{start},{end}")
+    public List<SaleInvoiceDetail> findInvoiceByStaffIn(@PathVariable String name, @PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.staffIn(name, start, end);
+    }
+
+    @GetMapping("/revenueByCustomerIn/{name},{start},{end}")
+    public String findRevenueByCustomerIn(@PathVariable String name, @PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.saleByCustomerIn(name, start, end);
+    }
+
+    @GetMapping("/revenueByStaffIn/{name},{start},{end}")
+    public String findRevenueByStaffIn(@PathVariable String name, @PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.saleByStaffIn(name, start, end);
     }
 }
