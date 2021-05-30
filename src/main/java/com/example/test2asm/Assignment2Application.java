@@ -77,7 +77,7 @@ public class Assignment2Application {
 
 		//<editor-fold desc="ORDER DETAIL">
         OrderDetail detailNum1 = new OrderDetail(order1, phone, 30);
-        OrderDetail detailNum2 = new OrderDetail(order1, bike, 15);
+        OrderDetail detailNum2 = new OrderDetail(order2, bike, 15);
         OrderDetail detailNum3 = new OrderDetail(order2, laptop, 10);
         List<OrderDetail> orderDetails = Arrays.asList(detailNum1, detailNum2, detailNum3);
         orderDetailRepository.saveAll(orderDetails);

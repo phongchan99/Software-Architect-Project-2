@@ -61,4 +61,5 @@ public class ReceivingNoteController {
     public List<ReceivingNoteDetail> findInvoiceOn(@PathVariable String date) {
         return service.onDate(date);
     }
+
 }

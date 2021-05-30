@@ -1,5 +1,6 @@
 package com.example.test2asm.service;
 
+import com.example.test2asm.entity.DeliveryNoteDetail;
 import com.example.test2asm.entity.ReceivingNoteDetail;
 import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.repository.ReceivingDetailRepository;
@@ -78,6 +79,26 @@ public class ReceivingNoteService {
             }
         }
         return filtered;
+    }
+
+    public String warehouse(String name, String start, String end) throws ParseException {
+        List received = new ArrayList<>();
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<ReceivingNoteDetail> receiveNotes = repository.findAll();
+
+        for (ReceivingNoteDetail receivingNoteDetail : receiveNotes) {
+            Date mid = format.parse(receivingNoteDetail.getReceivingNote().getReceivingNote_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (receivingNoteDetail.getOrderDetail().getProduct().getProduct_name().toLowerCase().equals(name.toLowerCase())) {
+                    received.add(receivingNoteDetail.getOrderDetail().getQuantity());
+                }
+            }
+        }
+        return "The number of " + name + " received are: " + received;
     }
 
 }

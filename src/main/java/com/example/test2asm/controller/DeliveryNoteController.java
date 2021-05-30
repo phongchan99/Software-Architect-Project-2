@@ -1,9 +1,8 @@
 package com.example.test2asm.controller;
 
 import com.example.test2asm.entity.DeliveryNoteDetail;
-import com.example.test2asm.entity.ReceivingNoteDetail;
-import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.service.DeliveryNoteService;
+import com.example.test2asm.service.ReceivingNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +15,7 @@ public class DeliveryNoteController {
 
     @Autowired
     private DeliveryNoteService service;
+
 
     @PostMapping("/addDelivery")
     public DeliveryNoteDetail addDelivery(@RequestBody DeliveryNoteDetail deliveryNoteDetail) {
@@ -66,5 +66,10 @@ public class DeliveryNoteController {
     @GetMapping("/deliveryOn/{date}")
     public List<DeliveryNoteDetail> findInvoiceOn(@PathVariable String date) {
         return service.onDate(date);
+    }
+
+    @GetMapping("/warehouse/{name}/{start},{end}")
+    public String warehouse(@PathVariable String name, @PathVariable String start, @PathVariable String end) throws ParseException {
+        return service.warehouse(name, start, end);
     }
 }

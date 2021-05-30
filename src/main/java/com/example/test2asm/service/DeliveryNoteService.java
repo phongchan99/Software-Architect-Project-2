@@ -4,6 +4,7 @@ import com.example.test2asm.entity.DeliveryNoteDetail;
 import com.example.test2asm.entity.ReceivingNoteDetail;
 import com.example.test2asm.entity.SaleInvoiceDetail;
 import com.example.test2asm.repository.DeliveryDetailRepository;
+import com.example.test2asm.repository.ReceivingDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,8 @@ public class DeliveryNoteService {
 
     @Autowired
     private DeliveryDetailRepository repository;
+    @Autowired
+    private ReceivingNoteService receivingNoteService;
 
     public DeliveryNoteDetail saveDelivery(DeliveryNoteDetail deliveryNoteDetail) {
         return repository.save(deliveryNoteDetail);
@@ -61,8 +64,8 @@ public class DeliveryNoteService {
         Date startDate = format.parse(start);
         Date endDate = format.parse(end);
 
-        List<DeliveryNoteDetail> invoices = repository.findAll();
-        for (DeliveryNoteDetail deliveryNoteDetail : invoices) {
+        List<DeliveryNoteDetail> notes = repository.findAll();
+        for (DeliveryNoteDetail deliveryNoteDetail : notes) {
             Date mid = format.parse(deliveryNoteDetail.getDeliveryNote().getDeliveryNote_date());
             if (startDate.before(mid) && endDate.after(mid)) {
                 qualified.add(deliveryNoteDetail);
@@ -80,5 +83,42 @@ public class DeliveryNoteService {
             }
         }
         return filtered;
+    }
+
+    public String warehouse(String name, String start, String end) throws ParseException {
+        List<Integer> received = new ArrayList<>();
+        List<Integer> delivered = new ArrayList<>();
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = format.parse(start);
+        Date endDate = format.parse(end);
+
+        List<ReceivingNoteDetail> receiveNotes = receivingNoteService.getReceivings();
+        List<DeliveryNoteDetail> deliveryNotes = repository.findAll();
+
+        for (DeliveryNoteDetail deliveryNoteDetail : deliveryNotes) {
+            Date mid = format.parse(deliveryNoteDetail.getDeliveryNote().getDeliveryNote_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (deliveryNoteDetail.getProduct().getProduct_name()
+                        .toLowerCase().equals(name.toLowerCase())) {
+                    delivered.add(deliveryNoteDetail.getQuantity());
+                }
+            }
+        }
+        for (ReceivingNoteDetail receivingNoteDetail : receiveNotes) {
+            Date mid = format.parse(receivingNoteDetail.getReceivingNote().getReceivingNote_date());
+            if (startDate.before(mid) && endDate.after(mid)) {
+                if (receivingNoteDetail.getOrderDetail().getProduct().getProduct_name()
+                        .toLowerCase().equals(name.toLowerCase())) {
+                    received.add(receivingNoteDetail.getOrderDetail().getQuantity());
+                }
+            }
+        }
+
+        int balance = 0;
+        return  "The number of " + name.toUpperCase() + " received are: " + received + "\n"
+                + "The number of " + name.toUpperCase() + " delivered are: " + delivered + "\n"
+                + "The balance remaining: " + received + " - " + delivered + " = "
+                + "I didn't figure this part out so please do the calculation in you mind" + ".";
     }
 }
